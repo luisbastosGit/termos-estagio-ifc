@@ -218,7 +218,7 @@
                 turmaFaseSelect.disabled = false;
 
                 if (cursoSelecionado === 'Técnico em Agropecuária') {
-                    ['TURMA 3A', 'TURMA 3B', 'TURMA 3C', 'TURMA 3D'].forEach(turma => {
+                    ['Turma 3A', 'TURMA 3B', 'TURMA 3C', 'TURMA 3D'].forEach(turma => {
                         const option = document.createElement('option');
                         option.value = turma;
                         option.textContent = turma;
@@ -245,7 +245,7 @@
                 });
 
                 // Envia os dados para o Apps Script Web App
-                fetch('https://script.google.com/macros/s/AKfycbzmL0hwVJyTmNLpaATKxMBJGOqowS4IDy9Y-XYlbbc4o0b30NJ5z7Nxg4pGztx_aTslYA/exec', { // <-- COLOQUE A URL DO SEU WEB APP AQUI!
+                fetch('SUA_URL_DO_WEB_APP_AQUI', { // <-- COLOQUE A URL DO SEU WEB APP AQUI!
                     method: 'POST',
                     body: JSON.stringify(data),
                     headers: {
@@ -271,6 +271,7 @@
     </script>
 </body>
 </html>
+
 
 
 
