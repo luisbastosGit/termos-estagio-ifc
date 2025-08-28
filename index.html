@@ -218,7 +218,7 @@
                 turmaFaseSelect.disabled = false;
 
                 if (cursoSelecionado === 'Técnico em Agropecuária') {
-                    ['Turma 3A', 'TURMA 3B', 'TURMA 3C', 'TURMA 3D'].forEach(turma => {
+                    ['TURMA 3A', 'TURMA 3B', 'TURMA 3C', 'TURMA 3D'].forEach(turma => {
                         const option = document.createElement('option');
                         option.value = turma;
                         option.textContent = turma;
@@ -232,26 +232,44 @@
                 }
             });
 
-            // Validação de e-mail personalizada
+            // --- Manipulação do Envio do Formulário ---
             const form = document.getElementById('student-form');
             form.addEventListener('submit', (e) => {
-                const emailConcedente = document.getElementById('email-concedente').value;
-                if (!emailConcedente.includes('@') || !emailConcedente.includes('.')) {
-                    alert('Por favor, insira um e-mail válido para a concedente.');
-                    e.preventDefault();
-                } else {
-                    // Aqui é onde você enviaria os dados para o Apps Script
-                    // Por enquanto, apenas para demonstração:
-                    const formData = new FormData(form);
-                    const data = {};
-                    formData.forEach((value, key) => {
-                        data[key] = value;
-                    });
-                    console.log('Dados do aluno enviados:', data);
-                    alert('Formulário enviado com sucesso! O próximo passo é no Apps Script.');
-                }
+                e.preventDefault(); // Impede o envio padrão do formulário
+
+                // Coleta os dados do formulário
+                const formData = new FormData(form);
+                const data = {};
+                formData.forEach((value, key) => {
+                    data[key] = value;
+                });
+
+                // Envia os dados para o Apps Script Web App
+                fetch('https://luisbastosgit.github.io/termos-estagio-ifc', { // <-- COLOQUE A URL DO SEU WEB APP AQUI!
+                    method: 'POST',
+                    body: JSON.stringify(data),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(response => response.json())
+                .then(result => {
+                    if (result.success) {
+                        alert('Formulário enviado com sucesso! Um e-mail foi enviado para a empresa.');
+                        window.location.reload(); // Recarrega o formulário para um novo preenchimento
+                    } else {
+                        alert('Erro ao enviar o formulário: ' + result.error);
+                        console.error('Erro do Apps Script:', result.error);
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro na requisição fetch:', error);
+                    alert('Ocorreu um erro de conexão. Verifique sua internet e tente novamente.');
+                });
             });
         });
     </script>
 </body>
 </html>
+
+
