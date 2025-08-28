@@ -115,6 +115,42 @@
                     <input type="text" id="nome-orientador" name="nome-orientador" required
                            class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
                 </div>
+
+                <!-- NOVOS CAMPOS PARA O PDF (Removidos para o aluno) -->
+                <!--
+                <div>
+                    <label for="valor-bolsa" class="block text-sm font-medium text-gray-700">
+                        Valor da Bolsa (R$)
+                        <span class="text-red-500">*</span>
+                    </label>
+                    <input type="text" id="valor-bolsa" name="valor-bolsa" required placeholder="Ex: 500,00"
+                           class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                </div>
+                <div>
+                    <label for="valor-transporte" class="block text-sm font-medium text-gray-700">
+                        Valor do Auxílio Transporte (R$)
+                        <span class="text-red-500">*</span>
+                    </label>
+                    <input type="text" id="valor-transporte" name="valor-transporte" required placeholder="Ex: 100,00"
+                           class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                </div>
+                <div>
+                    <label for="numero-convenio" class="block text-sm font-medium text-gray-700">
+                        Número do Convênio
+                        <span class="text-red-500">*</span>
+                    </label>
+                    <input type="text" id="numero-convenio" name="numero-convenio" required
+                           class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                </div>
+                <div>
+                    <label for="ano-convenio" class="block text-sm font-medium text-gray-700">
+                        Ano do Convênio
+                        <span class="text-red-500">*</span>
+                    </label>
+                    <input type="text" id="ano-convenio" name="ano-convenio" required placeholder="AAAA"
+                           class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                </div>
+                -->
             </div>
 
             <!-- Seção da Concedente -->
@@ -162,10 +198,14 @@
                 </div>
             </div>
 
-            <button type="submit"
+            <button type="submit" id="submit-button"
                     class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
                 Enviar para a Empresa
             </button>
+            <div id="loading-message" class="text-center text-gray-600 mt-4 hidden">
+                <div class="inline-block animate-spin rounded-full h-6 w-6 border-4 border-t-4 border-blue-500 border-opacity-75"></div>
+                <p class="mt-2">Enviando dados e gerando termo... Por favor, aguarde.</p>
+            </div>
         </form>
     </div>
     
@@ -179,6 +219,11 @@
             const cursoSelect = document.getElementById('curso');
             const turmaFaseSelect = document.getElementById('turma-fase');
             // Removidos: valorBolsaInput, valorTransporteInput, numeroConvenioInput, anoConvenioInput
+
+            // Elementos para controle de envio
+            const submitButton = document.getElementById('submit-button');
+            const loadingMessage = document.getElementById('loading-message');
+
 
             // --- Lógica de Máscaras ---
             // Máscara para CPF (000.000.000-00)
@@ -249,6 +294,12 @@
             form.addEventListener('submit', (e) => {
                 e.preventDefault(); // Impede o envio padrão do formulário
 
+                // Desabilita o botão e mostra mensagem de loading
+                submitButton.disabled = true;
+                submitButton.classList.add('opacity-50', 'cursor-not-allowed');
+                loadingMessage.classList.remove('hidden');
+
+
                 // Coleta os dados do formulário
                 const formData = new FormData(form);
                 const data = {};
@@ -283,9 +334,16 @@
                 .catch(error => {
                     console.error('Erro na requisição fetch:', error);
                     alert('Ocorreu um erro de conexão. Verifique sua internet e tente novamente.');
+                })
+                .finally(() => {
+                    // Reabilita o botão e oculta a mensagem de loading em caso de erro
+                    submitButton.disabled = false;
+                    submitButton.classList.remove('opacity-50', 'cursor-not-allowed');
+                    loadingMessage.classList.add('hidden');
                 });
             });
         });
     </script>
 </body>
 </html>
+
