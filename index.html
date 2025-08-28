@@ -74,6 +74,15 @@
                 </div>
 
                 <div>
+                    <label for="email-aluno" class="block text-sm font-medium text-gray-700">
+                        E-mail do Aluno
+                        <span class="text-red-500">*</span>
+                    </label>
+                    <input type="email" id="email-aluno" name="email-aluno" required
+                           class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                </div>
+
+                <div>
                     <label for="curso" class="block text-sm font-medium text-gray-700">
                         Informe o seu Curso
                         <span class="text-red-500">*</span>
@@ -169,6 +178,7 @@
             const telefoneConcedenteInput = document.getElementById('telefone-concedente');
             const cursoSelect = document.getElementById('curso');
             const turmaFaseSelect = document.getElementById('turma-fase');
+            // Removidos: valorBolsaInput, valorTransporteInput, numeroConvenioInput, anoConvenioInput
 
             // --- Lógica de Máscaras ---
             // Máscara para CPF (000.000.000-00)
@@ -211,6 +221,8 @@
             telefoneAlunoInput.addEventListener('input', maskTelefone);
             telefoneConcedenteInput.addEventListener('input', maskTelefone);
 
+            // Removidos: Máscara para Valor e Máscara para Ano
+
             // --- Lógica Condicional de Turma/Fase ---
             cursoSelect.addEventListener('change', (e) => {
                 const cursoSelecionado = e.target.value;
@@ -218,7 +230,7 @@
                 turmaFaseSelect.disabled = false;
 
                 if (cursoSelecionado === 'Técnico em Agropecuária') {
-                    ['Turma 3A', 'TURMA 3B', 'TURMA 3C', 'TURMA 3D'].forEach(turma => {
+                    ['TURMA 3A', 'TURMA 3B', 'TURMA 3C', 'TURMA 3D'].forEach(turma => {
                         const option = document.createElement('option');
                         option.value = turma;
                         option.textContent = turma;
@@ -244,12 +256,18 @@
                     data[key] = value;
                 });
 
+                // Converte o objeto de dados para o formato URL-encoded
+                const urlEncodedData = new URLSearchParams();
+                for (const key in data) {
+                    urlEncodedData.append(key, data[key]);
+                }
+
                 // Envia os dados para o Apps Script Web App
                 fetch('https://script.google.com/macros/s/AKfycbzmL0hwVJyTmNLpaATKxMBJGOqowS4IDy9Y-XYlbbc4o0b30NJ5z7Nxg4pGztx_aTslYA/exec', { // <-- COLOQUE A URL DO SEU WEB APP AQUI!
                     method: 'POST',
-                    body: JSON.stringify(data),
+                    body: urlEncodedData.toString(), // Envia como string URL-encoded
                     headers: {
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/x-www-form-urlencoded' // <-- NOVO CABEÇALHO
                     }
                 })
                 .then(response => response.json())
@@ -271,10 +289,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
