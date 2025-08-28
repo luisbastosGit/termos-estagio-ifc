@@ -512,12 +512,18 @@
                     data[key] = value;
                 });
 
+                // Converte o objeto de dados para o formato URL-encoded
+                const urlEncodedData = new URLSearchParams();
+                for (const key in data) {
+                    urlEncodedData.append(key, data[key]);
+                }
+
                 // Envia os dados para o Apps Script Web App
-                fetch('https://luisbastosgit.github.io/termos-estagio-ifc/empresa.html', { // <-- COLOQUE A URL DO SEU WEB APP AQUI!
+                fetch('SUA_URL_DO_WEB_APP_AQUI', { // <-- COLOQUE A URL DO SEU WEB APP AQUI!
                     method: 'POST',
-                    body: JSON.stringify(data),
+                    body: urlEncodedData.toString(), // Envia como string URL-encoded
                     headers: {
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/x-www-form-urlencoded' // <-- NOVO CABEÇALHO
                     }
                 })
                 .then(response => response.json())
@@ -539,10 +545,3 @@
     </script>
 </body>
 </html>
-
-        });
-    </script>
-</body>
-
-</html>
-
