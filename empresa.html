@@ -413,22 +413,25 @@
                 let value = e.target.value.replace(/\D/g, '');
                 let maskedValue = '';
 
-                if (value.length > 10) value = value.slice(0, 10); // Limita a HHMMHHMM (10 dígitos para 07301230)
+                // Limita a 8 dígitos (HHMMHHMM)
+                if (value.length > 8) value = value.slice(0, 8);
 
-                if (value.length >= 3) { // HH:M
-                    maskedValue += value.substring(0, 2) + ':' + value.substring(2, 4);
-                } else if (value.length >= 1) { // H
-                    maskedValue += value.substring(0, 2);
-                }
+                // Primeiro horário (HH:mm)
+                if (value.length >= 2) maskedValue += value.substring(0, 2) + ':';
+                else maskedValue += value.substring(0, 2);
 
-                if (value.length > 4) { // Se já temos HHMM, adiciona " às " e começa o segundo horário
+                if (value.length >= 4) maskedValue += value.substring(2, 4);
+                
+                // Se houver mais dígitos, adiciona " às " e o segundo horário
+                if (value.length > 4) {
                     maskedValue += ' às ';
-                    if (value.length >= 7) { // HH:MM às HH:M
-                        maskedValue += value.substring(4, 6) + ':' + value.substring(6, 8);
-                    } else if (value.length >= 5) { // HH:MM às H
-                        maskedValue += value.substring(4, 6);
-                    }
+                    if (value.length >= 6) maskedValue += value.substring(4, 6) + ':';
+                    else maskedValue += value.substring(4, 6);
+
+                    if (value.length >= 8) maskedValue += value.substring(6, 8);
+                    else maskedValue += value.substring(6, 8);
                 }
+                
                 e.target.value = maskedValue;
             };
             horarioMatutinoInput.addEventListener('input', maskTimeRange);
@@ -528,7 +531,7 @@
                 .then(response => response.json())
                 .then(result => {
                     if (result.success) {
-                        alert('Termo gerado com sucesso! Verifique a pasta no Google Drive e seu e-mail.');
+                        alert('Termo gerado com sucesso!');
                         window.location.href = 'pagina_de_confirmacao.html'; // Redireciona para uma página de confirmação
                     } else {
                         alert('Erro ao finalizar o termo: ' + result.error);
@@ -544,3 +547,4 @@
     </script>
 </body>
 </html>
+
