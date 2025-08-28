@@ -546,7 +546,7 @@
                 .then(result => {
                     if (result.success) {
                         alert('Termo gerado com sucesso!');
-                        window.location.href = 'pagina_de_confirmacao.html'; // Redireciona para uma página de confirmação
+                        window.location.href = 'pagina_confirmacao.html'; // Redireciona para uma página de confirmação
                     } else {
                         alert('Erro ao finalizar o termo: ' + result.error);
                         console.error('Erro do Apps Script:', result.error);
@@ -567,3 +567,4 @@
     </script>
 </body>
 </html>
+
