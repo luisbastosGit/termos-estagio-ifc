@@ -119,24 +119,16 @@
                     data[key] = value;
                 }
 
-                // O formulário do aluno NÃO DEVE enviar idRegistro nem statusPreenchimento
                 delete data['idRegistro'];
                 delete data['statusPreenchimento'];
 
                 const formBody = Object.keys(data).map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key])).join('&');
 
-                // URL DO SEU WEB APP DO GOOGLE APPS SCRIPT
-                const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwFYPjVAP94uRmpG9lQgpqMV6RUNum7Mi2q1vkGwVB4aDwEswrstWtTNZtJuXXHzMjiRw/exec'; // SUA URL REAL AQUI!
+                const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwFYPjVAP94uRmpG9lQgpqMV6RUNum7Mi2q1vkGwVB4aDwEswrstWtTNZtJuXXHzmjiRw/exec'; 
 
-                // Removido o if redundante, pois a URL já está definida acima
-                // if (WEB_APP_URL === 'SUA_URL_DO_WEB_APP_AQUI' || !WEB_APP_URL) {
-                //     console.error("Erro: A URL do Web App não foi configurada. Por favor, substitua 'SUA_URL_DO_WEB_APP_AQUI' pela URL real.");
-                //     return;
-                // }
-
-                console.log("Dados sendo enviados (index.html):", data); // Novo log
-                console.log("Corpo da requisição (formBody - index.html):", formBody); // Novo log
-                console.log("URL do Apps Script (index.html):", WEB_APP_URL); // Novo log
+                console.log("Dados sendo enviados (index.html):", data); 
+                console.log("Corpo da requisição (formBody - index.html):", formBody); 
+                console.log("URL do Apps Script (index.html):", WEB_APP_URL); 
 
                 try {
                     const response = await fetch(WEB_APP_URL, {
@@ -147,17 +139,27 @@
                         body: formBody
                     });
 
-                    console.log("Resposta bruta do Apps Script (index.html):", response); // Novo log
-                    const result = await response.json();
-                    console.log("Resultado JSON do Apps Script (index.html):", result); // Novo log
+                    console.log("Resposta bruta do Apps Script (index.html):", response); 
+                    
+                    // Verifica se a resposta é JSON antes de tentar fazer o parse
+                    const contentType = response.headers.get("content-type");
+                    if (contentType && contentType.indexOf("application/json") !== -1) {
+                        const result = await response.json();
+                        console.log("Resultado JSON do Apps Script (index.html):", result); 
 
-                    if (result.success) {
-                        alert('Formulário enviado com sucesso! Um e-mail foi enviado para a empresa.');
-                        window.location.reload(); 
+                        if (result.success) {
+                            alert('Formulário enviado com sucesso! Um e-mail foi enviado para a empresa.');
+                            window.location.reload(); 
+                        } else {
+                            alert('Erro ao enviar o formulário: ' + result.error);
+                            console.error('Erro detalhado do Apps Script (index.html):', result.error);
+                        }
                     } else {
-                        alert('Erro ao enviar o formulário: ' + result.error);
-                        console.error('Erro detalhado do Apps Script (index.html):', result.error);
+                        const textResult = await response.text();
+                        console.error("Resposta não é JSON. Conteúdo:", textResult);
+                        alert('Erro: Resposta inesperada do servidor. Verifique os logs do Apps Script.');
                     }
+
                 } catch (error) {
                     console.error('Erro na requisição fetch (index.html):', error);
                     alert('Ocorreu um erro de conexão ou de processamento. Tente novamente ou contate o suporte.');
@@ -167,6 +169,7 @@
     </script>
 </body>
 </html>
+
 
 
 
