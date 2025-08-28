@@ -37,6 +37,13 @@
 
     <div class="bg-white p-6 sm:p-10 rounded-2xl shadow-xl w-full max-w-3xl">
         <h1 class="text-3xl font-bold text-center text-gray-800 mb-2">Formulário de Estágio - Informações da Empresa</h1>
+        
+        <!-- Mensagem de Contexto do Aluno -->
+        <div id="aluno-context-message" class="bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4 mb-6 hidden" role="alert">
+            <p class="font-bold">Informação Importante:</p>
+            <p>Este formulário está relacionado ao aluno <strong id="display-aluno-nome"></strong> do curso <strong id="display-aluno-curso"></strong> do Instituto Federal Catarinense, ao qual o seu preenchimento é necessário para emissão do Termo de Compromisso de Estágio Obrigatório que será enviado, posteriormente, para assinatura da Empresa, do IFC e do Aluno.</p>
+        </div>
+
         <p class="text-center text-gray-600 mb-8">Por favor, preencha as informações da empresa e do estágio.</p>
 
         <form id="company-form" class="space-y-8">
@@ -334,6 +341,11 @@
             const dailyScheduleTable = document.getElementById('daily-schedule-table');
             const dailyTimeInputs = dailyScheduleTable.querySelectorAll('.mask-time-range');
 
+            // Elementos para exibir o contexto do aluno
+            const alunoContextMessage = document.getElementById('aluno-context-message');
+            const displayAlunoNome = document.getElementById('display-aluno-nome');
+            const displayAlunoCurso = document.getElementById('display-aluno-curso');
+
 
             // Lista de UFs do Brasil
             const ufs = ['AC', 'AL', 'AM', 'AP', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MG', 'MS', 'MT', 'PA', 'PB', 'PE', 'PI', 'PR', 'RJ', 'RN', 'RO', 'RR', 'RS', 'SC', 'SE', 'SP', 'TO'];
@@ -424,10 +436,13 @@
             horarioVespertinoInput.addEventListener('input', maskTimeRange);
             dailyTimeInputs.forEach(input => input.addEventListener('input', maskTimeRange)); // Aplica máscara aos novos campos da tabela
 
-            // --- Lógica de Preenchimento de Campos Ocultos da URL ---
+
+            // --- Lógica de Preenchimento de Campos Ocultos da URL e Contexto do Aluno ---
             const urlParams = new URLSearchParams(window.location.search);
             const idRegistroFromUrl = urlParams.get('id'); // Pega o ID da URL (?id=...)
             const statusFromUrl = urlParams.get('status'); // Pega o status da URL (?status=...)
+            const alunoNomeFromUrl = urlParams.get('alunoNome'); // Pega o nome do aluno da URL
+            const alunoCursoFromUrl = urlParams.get('alunoCurso'); // Pega o curso do aluno da URL
 
             if (idRegistroFromUrl) {
                 document.getElementById('id-registro').value = idRegistroFromUrl;
@@ -438,6 +453,14 @@
                 // Se o status não vier da URL, definimos como 'Empresa' para nova submissão da empresa
                 document.getElementById('status-preenchimento').value = 'Empresa';
             }
+
+            // Exibe a mensagem de contexto do aluno se os dados estiverem na URL
+            if (alunoNomeFromUrl && alunoCursoFromUrl) {
+                displayAlunoNome.textContent = decodeURIComponent(alunoNomeFromUrl);
+                displayAlunoCurso.textContent = decodeURIComponent(alunoCursoFromUrl);
+                alunoContextMessage.classList.remove('hidden');
+            }
+
 
             // --- Lógica Condicional para Horários Repetidos ---
             horariosRepetemRadios.forEach(radio => {
@@ -454,7 +477,7 @@
                     } else {
                         dailyScheduleTable.classList.add('hidden');
                         // Remove a obrigatoriedade dos campos de horário diários
-                        dailyTimeInputs.forEach(input => inputremoveAttribute('required'));
+                        dailyTimeInputs.forEach(input => input.removeAttribute('required'));
                         // Torna os campos de horário gerais obrigatórios
                         horarioMatutinoInput.setAttribute('required', 'true');
                         horarioVespertinoInput.setAttribute('required', 'true');
@@ -489,31 +512,36 @@
                     data[key] = value;
                 });
 
-                // Aqui é onde você enviaria os dados para o Apps Script (backend)
-                // Por enquanto, apenas para demonstração:
-                console.log('Dados da empresa enviados:', data);
-                alert('Formulário da empresa enviado com sucesso! O próximo passo é o Apps Script para consolidar e gerar o termo.');
-                
-                // Exemplo de como você enviaria os dados para o Apps Script como um Web App:
-                // fetch('URL_DO_SEU_WEB_APP_APPS_SCRIPT', {
-                //     method: 'POST',
-                //     body: JSON.stringify(data),
-                //     headers: {
-                //         'Content-Type': 'application/json'
-                //     }
-                // })
-                // .then(response => response.json())
-                // .then(result => {
-                //     console.log('Sucesso:', result);
-                //     alert('Dados enviados com sucesso e termo gerado!');
-                //     // Redirecionar para uma página de confirmação, por exemplo
-                // })
-                // .catch(error => {
-                //     console.error('Erro:', error);
-                //     alert('Ocorreu um erro ao enviar os dados.');
-                // });
+                // Envia os dados para o Apps Script Web App
+                fetch('SUA_URL_DO_WEB_APP_AQUI', { // <-- COLOQUE A URL DO SEU WEB APP AQUI!
+                    method: 'POST',
+                    body: JSON.stringify(data),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(response => response.json())
+                .then(result => {
+                    if (result.success) {
+                        alert('Termo gerado com sucesso! Verifique a pasta no Google Drive e seu e-mail.');
+                        window.location.href = 'pagina_de_confirmacao.html'; // Redireciona para uma página de confirmação
+                    } else {
+                        alert('Erro ao finalizar o termo: ' + result.error);
+                        console.error('Erro do Apps Script:', result.error);
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro na requisição fetch:', error);
+                    alert('Ocorreu um erro de conexão. Tente novamente.');
+                });
             });
         });
     </script>
 </body>
+</html>
+
+        });
+    </script>
+</body>
+
 </html>
