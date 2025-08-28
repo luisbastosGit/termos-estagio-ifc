@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Estágio - Aluno</title>
+    <!-- Inclui o Tailwind CSS para estilização -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 p-6 sm:p-10 flex items-center justify-center min-h-screen">
+
+    <div class="bg-white p-6 sm:p-10 rounded-2xl shadow-xl w-full max-w-2xl">
+        <h1 class="text-3xl font-bold text-center text-gray-800 mb-2">Formulário de Estágio</h1>
+        <p class="text-center text-gray-600 mb-8">Preencha as suas informações para iniciar o processo.</p>
+
+        <form id="student-form" class="space-y-6">
+
+            <!-- Seção do Aluno -->
+            <div class="space-y-4">
+                <h2 class="text-xl font-semibold text-gray-800 border-b pb-2">Informações do Aluno</h2>
+                
+                <div>
+                    <label for="nome-completo" class="block text-sm font-medium text-gray-700">
+                        Nome Completo
+                        <span class="text-red-500">*</span>
+                    </label>
+                    <p class="text-xs text-gray-500 mt-1">
+                        <i class="fas fa-info-circle mr-1"></i>
+                        Informe o seu nome completo, SEM ABREVIAÇÕES, conforme consta na sua matrícula.
+                    </p>
+                    <input type="text" id="nome-completo" name="nome-completo" required
+                           class="mt-2 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                </div>
+
+                <div>
+                    <label for="cpf" class="block text-sm font-medium text-gray-700">
+                        CPF do Estudante
+                        <span class="text-red-500">*</span>
+                    </label>
+                    <input type="text" id="cpf" name="cpf" required placeholder="000.000.000-00"
+                           class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                </div>
+                
+                <div>
+                    <label for="matricula" class="block text-sm font-medium text-gray-700">
+                        Matrícula do Estudante
+                        <span class="text-red-500">*</span>
+                    </label>
+                    <input type="text" id="matricula" name="matricula" required
+                           class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                </div>
+                
+                <div>
+                    <label for="data-nascimento" class="block text-sm font-medium text-gray-700">
+                        Data de Nascimento
+                        <span class="text-red-500">*</span>
+                    </label>
+                    <input type="text" id="data-nascimento" name="data-nascimento" required placeholder="dd/mm/aaaa"
+                           class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                </div>
+
+                <div>
+                    <label for="telefone-aluno" class="block text-sm font-medium text-gray-700">
+                        Telefone do Aluno
+                        <span class="text-red-500">*</span>
+                    </label>
+                    <input type="tel" id="telefone-aluno" name="telefone-aluno" required placeholder="(99) 99999-9999"
+                           class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                </div>
+
+                <div>
+                    <label for="curso" class="block text-sm font-medium text-gray-700">
+                        Informe o seu Curso
+                        <span class="text-red-500">*</span>
+                    </label>
+                    <select id="curso" name="curso" required
+                            class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                        <option value="" disabled selected>Selecione um curso</option>
+                        <option value="Técnico em Agropecuária">Técnico em Agropecuária</option>
+                        <option value="Técnico em Alimentos">Técnico em Alimentos</option>
+                    </select>
+                </div>
+                
+                <div>
+                    <label for="turma-fase" class="block text-sm font-medium text-gray-700">
+                        Turma/Fase
+                        <span class="text-red-500">*</span>
+                    </label>
+                    <select id="turma-fase" name="turma-fase" required disabled
+                            class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                        <option value="" disabled selected>Selecione uma turma</option>
+                    </select>
+                </div>
+
+                <!-- NOVO CAMPO: Nome do Orientador -->
+                <div>
+                    <label for="nome-orientador" class="block text-sm font-medium text-gray-700">
+                        Nome do Orientador
+                        <span class="text-red-500">*</span>
+                    </label>
+                    <input type="text" id="nome-orientador" name="nome-orientador" required
+                           class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                </div>
+            </div>
+
+            <!-- Seção da Concedente -->
+            <div class="space-y-4 pt-6">
+                <h2 class="text-xl font-semibold text-gray-800 border-b pb-2">Informações da Concedente</h2>
+                
+                <div>
+                    <label for="nome-concedente" class="block text-sm font-medium text-gray-700">
+                        Nome do(a) Concedente
+                        <span class="text-red-500">*</span>
+                    </label>
+                    <input type="text" id="nome-concedente" name="nome-concedente" required
+                           class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                </div>
+
+                <div>
+                    <label for="responsavel-concedente" class="block text-sm font-medium text-gray-700">
+                        Nome do Responsável pela Concedente
+                        <span class="text-red-500">*</span>
+                    </label>
+                    <input type="text" id="responsavel-concedente" name="responsavel-concedente" required
+                           class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                </div>
+
+                <div>
+                    <label for="telefone-concedente" class="block text-sm font-medium text-gray-700">
+                        Telefone do(a) Concedente
+                        <span class="text-red-500">*</span>
+                    </label>
+                    <input type="tel" id="telefone-concedente" name="telefone-concedente" required placeholder="(99) 99999-9999"
+                           class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                </div>
+
+                <div>
+                    <label for="email-concedente" class="block text-sm font-medium text-gray-700">
+                        E-mail do(a) Concedente
+                        <span class="text-red-500">*</span>
+                    </label>
+                    <p class="text-xs text-gray-500 mt-1">
+                        <i class="fas fa-info-circle mr-1"></i>
+                        ATENÇÃO! Tenha MÁXIMA ATENÇÃO no preenchimento do E-MAIL, pois esse formulário será encaminhado para a empresa concluir o preenchimento. Tenha CERTEZA de que o E-mail está correto.
+                    </p>
+                    <input type="email" id="email-concedente" name="email-concedente" required
+                           class="mt-2 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                </div>
+            </div>
+
+            <button type="submit"
+                    class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                Enviar para a Empresa
+            </button>
+        </form>
+    </div>
+    
+    <!-- Script para máscaras e lógica condicional -->
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const cpfInput = document.getElementById('cpf');
+            const dataNascimentoInput = document.getElementById('data-nascimento');
+            const telefoneAlunoInput = document.getElementById('telefone-aluno');
+            const telefoneConcedenteInput = document.getElementById('telefone-concedente');
+            const cursoSelect = document.getElementById('curso');
+            const turmaFaseSelect = document.getElementById('turma-fase');
+
+            // --- Lógica de Máscaras ---
+            // Máscara para CPF (000.000.000-00)
+            cpfInput.addEventListener('input', (e) => {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length > 11) value = value.slice(0, 11);
+                value = value.replace(/(\d{3})(\d)/, '$1.$2');
+                value = value.replace(/(\d{3})(\d)/, '$1.$2');
+                value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+                e.target.value = value;
+            });
+
+            // Máscara para Data (dd/mm/aaaa)
+            dataNascimentoInput.addEventListener('input', (e) => {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length > 8) value = value.slice(0, 8);
+                if (value.length > 4) value = value.replace(/^(\d{2})(\d{2})(\d{1,4})/, '$1/$2/$3');
+                else if (value.length > 2) value = value.replace(/^(\d{2})(\d{1,2})/, '$1/$2');
+                e.target.value = value;
+            });
+
+            // Máscara para Telefone (pode ser 8 ou 9 dígitos no meio)
+            const maskTelefone = (e) => {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length > 11) value = value.slice(0, 11);
+                if (value.length === 11) {
+                    value = value.replace(/^(\d{2})(\d{5})(\d{4})$/, '($1) $2-$3');
+                } else if (value.length === 10) {
+                    value = value.replace(/^(\d{2})(\d{4})(\d{4})$/, '($1) $2-$3');
+                } else if (value.length > 6) {
+                    value = value.replace(/^(\d{2})(\d{4,5})(\d{1,4})$/, '($1) $2-$3');
+                } else if (value.length > 2) {
+                    value = value.replace(/^(\d{2})(\d{1,5})/, '($1) $2');
+                } else if (value.length > 0) {
+                    value = value.replace(/^(\d{1,2})/, '($1)');
+                }
+                e.target.value = value;
+            };
+
+            telefoneAlunoInput.addEventListener('input', maskTelefone);
+            telefoneConcedenteInput.addEventListener('input', maskTelefone);
+
+            // --- Lógica Condicional de Turma/Fase ---
+            cursoSelect.addEventListener('change', (e) => {
+                const cursoSelecionado = e.target.value;
+                turmaFaseSelect.innerHTML = '<option value="" disabled selected>Selecione uma turma</option>';
+                turmaFaseSelect.disabled = false;
+
+                if (cursoSelecionado === 'Técnico em Agropecuária') {
+                    ['Turma 3A', 'TURMA 3B', 'TURMA 3C', 'TURMA 3D'].forEach(turma => {
+                        const option = document.createElement('option');
+                        option.value = turma;
+                        option.textContent = turma;
+                        turmaFaseSelect.appendChild(option);
+                    });
+                } else if (cursoSelecionado === 'Técnico em Alimentos') {
+                    const option = document.createElement('option');
+                    option.value = '3E';
+                    option.textContent = '3E';
+                    turmaFaseSelect.appendChild(option);
+                }
+            });
+
+            // Validação de e-mail personalizada
+            const form = document.getElementById('student-form');
+            form.addEventListener('submit', (e) => {
+                const emailConcedente = document.getElementById('email-concedente').value;
+                if (!emailConcedente.includes('@') || !emailConcedente.includes('.')) {
+                    alert('Por favor, insira um e-mail válido para a concedente.');
+                    e.preventDefault();
+                } else {
+                    // Aqui é onde você enviaria os dados para o Apps Script
+                    // Por enquanto, apenas para demonstração:
+                    const formData = new FormData(form);
+                    const data = {};
+                    formData.forEach((value, key) => {
+                        data[key] = value;
+                    });
+                    console.log('Dados do aluno enviados:', data);
+                    alert('Formulário enviado com sucesso! O próximo passo é no Apps Script.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Estágio - Empresa</title>
+    <!-- Inclui o Tailwind CSS para estilização -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Estilo para ocultar campos que o script preencherá */
+        .hidden-by-script {
+            display: none !important;
+        }
+        /* Estilo para a tabela de horários */
+        .schedule-table th, .schedule-table td {
+            padding: 0.5rem;
+            border: 1px solid #e2e8f0; /* gray-300 */
+            text-align: center;
+        }
+        .schedule-table th {
+            background-color: #f7fafc; /* gray-50 */
+            font-weight: 600;
+        }
+        .schedule-table input {
+            width: 100%;
+            padding: 0.25rem;
+            border: 1px solid #cbd5e0; /* gray-400 */
+            border-radius: 0.25rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 p-6 sm:p-10 flex items-center justify-center min-h-screen">
+
+    <div class="bg-white p-6 sm:p-10 rounded-2xl shadow-xl w-full max-w-3xl">
+        <h1 class="text-3xl font-bold text-center text-gray-800 mb-2">Formulário de Estágio - Informações da Empresa</h1>
+        <p class="text-center text-gray-600 mb-8">Por favor, preencha as informações da empresa e do estágio.</p>
+
+        <form id="company-form" class="space-y-8">
+            <!-- Campos Ocultos para o ID do Registro e Status (Preenchidos pelo Apps Script) -->
+            <input type="hidden" id="id-registro" name="id-registro" value="">
+            <input type="hidden" id="status-preenchimento" name="status-preenchimento" value="">
+
+            <!-- Seção 1: Informações da Empresa -->
+            <div class="space-y-4">
+                <h2 class="text-xl font-semibold text-gray-800 border-b pb-2 mb-4">Informações da Concedente</h2>
+                
+                <div>
+                    <label for="nome-concedente-emp" class="block text-sm font-medium text-gray-700">Nome da Concedente <span class="text-red-500">*</span></label>
+                    <input type="text" id="nome-concedente-emp" name="nome-concedente-emp" required
+                           class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                </div>
+                <div>
+                    <label for="nome-fantasia" class="block text-sm font-medium text-gray-700">Nome de Fantasia</label>
+                    <input type="text" id="nome-fantasia" name="nome-fantasia"
+                           class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                </div>
+                <div>
+                    <label for="responsavel-empresa" class="block text-sm font-medium text-gray-700">Responsável <span class="text-red-500">*</span></label>
+                    <p class="text-xs text-gray-500 mt-1">O Responsável é a pessoa do RH ou aquela que possui poderes para responder pela empresa, que conste no Contrato Social ou possua procuração com esta finalidade.</p>
+                    <input type="text" id="responsavel-empresa" name="responsavel-empresa" required
+                           class="mt-2 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                </div>
+                <div>
+                    <label for="cargo-responsavel" class="block text-sm font-medium text-gray-700">Cargo do Responsável <span class="text-red-500">*</span></label>
+                    <input type="text" id="cargo-responsavel" name="cargo-responsavel" required
+                           class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                </div>
+                <div>
+                    <label for="cpf-responsavel" class="block text-sm font-medium text-gray-700">CPF do Responsável <span class="text-red-500">*</span></label>
+                    <input type="text" id="cpf-responsavel" name="cpf-responsavel" required placeholder="000.000.000-00"
+                           class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                </div>
+                <div>
+                    <label for="rg-responsavel" class="block text-sm font-medium text-gray-700">RG do Responsável <span class="text-red-500">*</span></label>
+                    <input type="text" id="rg-responsavel" name="rg-responsavel" required
+                           class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                </div>
+                <div>
+                    <label for="orgao-expedidor-responsavel" class="block text-sm font-medium text-gray-700">Órgão Expedidor <span class="text-red-500">*</span></label>
+                    <input type="text" id="orgao-expedidor-responsavel" name="orgao-expedidor-responsavel" required
+                           class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                </div>
+                <div>
+                    <label for="uf-orgao-expedidor-responsavel" class="block text-sm font-medium text-gray-700">UF do Órgão Expedidor <span class="text-red-500">*</span></label>
+                    <select id="uf-orgao-expedidor-responsavel" name="uf-orgao-expedidor-responsavel" required
+                            class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                        <option value="" disabled selected>Selecione a UF</option>
+                        <!-- UFs serão preenchidas via JS -->
+                    </select>
+                </div>
+                <div>
+                    <label for="cnpj-empresa" class="block text-sm font-medium text-gray-700">CNPJ <span class="text-red-500">*</span></label>
+                    <input type="text" id="cnpj-empresa" name="cnpj-empresa" required placeholder="00.000.000/0000-00"
+                           class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                </div>
+
+                <div class="pt-4">
+                    <h3 class="text-lg font-medium text-gray-800 border-b pb-2 mb-4">Endereço da Sede da Empresa</h3>
+                    <p class="text-xs text-gray-500 mb-2">Se o estágio não for realizado na sede, informar os dados da filial nos campos abaixo.</p>
+                    <div>
+                        <label for="cep-empresa" class="block text-sm font-medium text-gray-700">CEP da Empresa <span class="text-red-500">*</span></label>
+                        <input type="text" id="cep-empresa" name="cep-empresa" required placeholder="00000-000"
+                               class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                    </div>
+                    <div>
+                        <label for="rua-empresa" class="block text-sm font-medium text-gray-700">Rua <span class="text-red-500">*</span></label>
+                        <input type="text" id="rua-empresa" name="rua-empresa" required
+                               class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                    </div>
+                    <div>
+                        <label for="numero-empresa" class="block text-sm font-medium text-gray-700">Número <span class="text-red-500">*</span></label>
+                        <input type="text" id="numero-empresa" name="numero-empresa" required
+                               class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                    </div>
+                    <div>
+                        <label for="bairro-empresa" class="block text-sm font-medium text-gray-700">Bairro <span class="text-red-500">*</span></label>
+                        <input type="text" id="bairro-empresa" name="bairro-empresa" required
+                               class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                    </div>
+                    <div>
+                        <label for="cidade-empresa" class="block text-sm font-medium text-gray-700">Cidade <span class="text-red-500">*</span></label>
+                        <input type="text" id="cidade-empresa" name="cidade-empresa" required
+                               class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                    </div>
+                    <div>
+                        <label for="uf-empresa" class="block text-sm font-medium text-gray-700">UF da Empresa <span class="text-red-500">*</span></label>
+                        <select id="uf-empresa" name="uf-empresa" required
+                                class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                            <option value="" disabled selected>Selecione a UF</option>
+                            <!-- UFs serão preenchidas via JS -->
+                        </select>
+                    </div>
+                </div>
+
+                <div class="pt-4">
+                    <label class="block text-sm font-medium text-gray-700">Possui convênio com o Instituto Federal Catarinense? <span class="text-red-500">*</span></label>
+                    <div class="mt-2 space-y-2">
+                        <label class="inline-flex items-center">
+                            <input type="radio" name="convenio-ifc" value="SIM" required
+                                   class="form-radio h-4 w-4 text-blue-600 focus:ring-blue-500">
+                            <span class="ml-2 text-gray-700">SIM</span>
+                        </label>
+                        <label class="inline-flex items-center ml-6">
+                            <input type="radio" name="convenio-ifc" value="NÃO" required
+                                   class="form-radio h-4 w-4 text-blue-600 focus:ring-blue-500">
+                            <span class="ml-2 text-gray-700">NÃO</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Seção 2: Dados do Supervisor -->
+            <div class="space-y-4 pt-6">
+                <h2 class="text-xl font-semibold text-gray-800 border-b pb-2 mb-4">Dados do Supervisor</h2>
+                <p class="text-sm text-gray-500 mt-1">Supervisor é a pessoa designada pela empresa para acompanhar o estagiário durante todo o período do estágio.</p>
+                
+                <div>
+                    <label for="nome-supervisor" class="block text-sm font-medium text-gray-700">Nome completo do Supervisor <span class="text-red-500">*</span></label>
+                    <input type="text" id="nome-supervisor" name="nome-supervisor" required
+                           class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                </div>
+                <div>
+                    <label for="cargo-supervisor" class="block text-sm font-medium text-gray-700">Cargo <span class="text-red-500">*</span></label>
+                    <input type="text" id="cargo-supervisor" name="cargo-supervisor" required
+                           class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                </div>
+                <div>
+                    <label for="formacao-supervisor" class="block text-sm font-medium text-gray-700">Formação Acadêmica <span class="text-red-500">*</span></label>
+                    <input type="text" id="formacao-supervisor" name="formacao-supervisor" required
+                           class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                </div>
+                <div>
+                    <label for="cpf-supervisor" class="block text-sm font-medium text-gray-700">CPF <span class="text-red-500">*</span></label>
+                    <input type="text" id="cpf-supervisor" name="cpf-supervisor" required placeholder="000.000.000-00"
+                           class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                </div>
+                <div>
+                    <label for="rg-supervisor" class="block text-sm font-medium text-gray-700">RG <span class="text-red-500">*</span></label>
+                    <input type="text" id="rg-supervisor" name="rg-supervisor" required
+                           class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                </div>
+                <div>
+                    <label for="orgao-expedidor-supervisor" class="block text-sm font-medium text-gray-700">Órgão Expedidor <span class="text-red-500">*</span></label>
+                    <input type="text" id="orgao-expedidor-supervisor" name="orgao-expedidor-supervisor" required
+                           class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                </div>
+                <div>
+                    <label for="uf-orgao-expedidor-supervisor" class="block text-sm font-medium text-gray-700">UF do Órgão Expedidor <span class="text-red-500">*</span></label>
+                    <select id="uf-orgao-expedidor-supervisor" name="uf-orgao-expedidor-supervisor" required
+                            class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                        <option value="" disabled selected>Selecione a UF</option>
+                        <!-- UFs serão preenchidas via JS -->
+                    </select>
+                </div>
+                <div>
+                    <label for="email-supervisor" class="block text-sm font-medium text-gray-700">E-mail do Supervisor <span class="text-red-500">*</span></label>
+                    <input type="email" id="email-supervisor" name="email-supervisor" required
+                           class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                </div>
+            </div>
+
+            <!-- Seção 3: Dados do Estágio -->
+            <div class="space-y-4 pt-6">
+                <h2 class="text-xl font-semibold text-gray-800 border-b pb-2 mb-4">Dados do Estágio</h2>
+                
+                <div>
+                    <label for="data-inicio-estagio" class="block text-sm font-medium text-gray-700">Data prevista para início do Estágio <span class="text-red-500">*</span></label>
+                    <input type="text" id="data-inicio-estagio" name="data-inicio-estagio" required placeholder="dd/mm/aaaa"
+                           class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                </div>
+                <div>
+                    <label for="data-termino-estagio" class="block text-sm font-medium text-gray-700">Data prevista para término do Estágio <span class="text-red-500">*</span></label>
+                    <input type="text" id="data-termino-estagio" name="data-termino-estagio" required placeholder="dd/mm/aaaa"
+                           class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                </div>
+                
+                <div class="flex flex-col sm:flex-row sm:space-x-4">
+                    <div class="flex-1">
+                        <label for="horario-matutino" class="block text-sm font-medium text-gray-700">Horário matutino <span class="text-red-500">*</span></label>
+                        <input type="text" id="horario-matutino" name="horario-matutino" required placeholder="HH:mm às HH:mm"
+                               class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                    </div>
+                    <div class="flex-1 mt-4 sm:mt-0">
+                        <label for="horario-vespertino" class="block text-sm font-medium text-gray-700">Horário vespertino <span class="text-red-500">*</span></label>
+                        <input type="text" id="horario-vespertino" name="horario-vespertino" required placeholder="HH:mm às HH:mm"
+                               class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                    </div>
+                </div>
+
+                <!-- Nova Caixa de Seleção para Horários Repetidos -->
+                <div class="pt-4">
+                    <label class="block text-sm font-medium text-gray-700">Os horários de entrada e saída repetem-se para todos os dias de segunda à sexta-feira? <span class="text-red-500">*</span></label>
+                    <div class="mt-2 space-y-2">
+                        <label class="inline-flex items-center">
+                            <input type="radio" name="horarios-repetem" value="SIM" required checked
+                                   class="form-radio h-4 w-4 text-blue-600 focus:ring-blue-500">
+                            <span class="ml-2 text-gray-700">SIM</span>
+                        </label>
+                        <label class="inline-flex items-center ml-6">
+                            <input type="radio" name="horarios-repetem" value="NÃO" required
+                                   class="form-radio h-4 w-4 text-blue-600 focus:ring-blue-500">
+                            <span class="ml-2 text-gray-700">NÃO</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Quadro para Horários Diários (inicialmente oculto) -->
+                <div id="daily-schedule-table" class="pt-6 hidden">
+                    <h3 class="text-lg font-medium text-gray-800 border-b pb-2 mb-4">Horários Diários</h3>
+                    <table class="w-full schedule-table">
+                        <thead>
+                            <tr>
+                                <th>Dia da Semana</th>
+                                <th>Matutino (HH:mm às HH:mm)</th>
+                                <th>Vespertino (HH:mm às HH:mm)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Segunda-feira</td>
+                                <td><input type="text" name="horario-matutino-seg" placeholder="HH:mm às HH:mm" class="mask-time-range"></td>
+                                <td><input type="text" name="horario-vespertino-seg" placeholder="HH:mm às HH:mm" class="mask-time-range"></td>
+                            </tr>
+                            <tr>
+                                <td>Terça-feira</td>
+                                <td><input type="text" name="horario-matutino-ter" placeholder="HH:mm às HH:mm" class="mask-time-range"></td>
+                                <td><input type="text" name="horario-vespertino-ter" placeholder="HH:mm às HH:mm" class="mask-time-range"></td>
+                            </tr>
+                            <tr>
+                                <td>Quarta-feira</td>
+                                <td><input type="text" name="horario-matutino-qua" placeholder="HH:mm às HH:mm" class="mask-time-range"></td>
+                                <td><input type="text" name="horario-vespertino-qua" placeholder="HH:mm às HH:mm" class="mask-time-range"></td>
+                            </tr>
+                            <tr>
+                                <td>Quinta-feira</td>
+                                <td><input type="text" name="horario-matutino-qui" placeholder="HH:mm às HH:mm" class="mask-time-range"></td>
+                                <td><input type="text" name="horario-vespertino-qui" placeholder="HH:mm às HH:mm" class="mask-time-range"></td>
+                            </tr>
+                            <tr>
+                                <td>Sexta-feira</td>
+                                <td><input type="text" name="horario-matutino-sex" placeholder="HH:mm às HH:mm" class="mask-time-range"></td>
+                                <td><input type="text" name="horario-vespertino-sex" placeholder="HH:mm às HH:mm" class="mask-time-range"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Seção 4: Plano de Atividades de Estágio -->
+            <div class="space-y-4 pt-6">
+                <h2 class="text-xl font-semibold text-gray-800 border-b pb-2 mb-4">Plano de Atividades de Estágio</h2>
+                
+                <div>
+                    <label for="area-estagio" class="block text-sm font-medium text-gray-700">Área do Estágio <span class="text-red-500">*</span></label>
+                    <p class="text-xs text-gray-500 mt-1">Ex: Comercial, Administrativa, Alimentos, Suinocultura...</p>
+                    <input type="text" id="area-estagio" name="area-estagio" required
+                           class="mt-2 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                </div>
+                <div>
+                    <label for="atividades-previstas" class="block text-sm font-medium text-gray-700">Atividades Previstas <span class="text-red-500">*</span></label>
+                    <p class="text-xs text-gray-500 mt-1">Aqui poderá ser informado quais as atividades o estagiário deverá desenvolver para o desenvolvimento de suas habilidades relacionadas com o seu curso.</p>
+                    <textarea id="atividades-previstas" name="atividades-previstas" rows="5" required
+                              class="mt-2 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors"></textarea>
+                </div>
+            </div>
+
+            <button type="submit"
+                    class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
+                Finalizar e Enviar Termo
+            </button>
+        </form>
+    </div>
+    
+    <!-- Script para máscaras e preenchimento de UFs -->
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const cpfResponsavelInput = document.getElementById('cpf-responsavel');
+            const cnpjEmpresaInput = document.getElementById('cnpj-empresa');
+            const cepEmpresaInput = document.getElementById('cep-empresa');
+            const ufOrgaoExpedidorResponsavelSelect = document.getElementById('uf-orgao-expedidor-responsavel');
+            const ufEmpresaSelect = document.getElementById('uf-empresa');
+            const cpfSupervisorInput = document.getElementById('cpf-supervisor');
+            const dataInicioEstagioInput = document.getElementById('data-inicio-estagio');
+            const dataTerminoEstagioInput = document.getElementById('data-termino-estagio');
+            const horarioMatutinoInput = document.getElementById('horario-matutino');
+            const horarioVespertinoInput = document.getElementById('horario-vespertino');
+            const ufOrgaoExpedidorSupervisorSelect = document.getElementById('uf-orgao-expedidor-supervisor');
+
+            const horariosRepetemRadios = document.querySelectorAll('input[name="horarios-repetem"]');
+            const dailyScheduleTable = document.getElementById('daily-schedule-table');
+            const dailyTimeInputs = dailyScheduleTable.querySelectorAll('.mask-time-range');
+
+
+            // Lista de UFs do Brasil
+            const ufs = ['AC', 'AL', 'AM', 'AP', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MG', 'MS', 'MT', 'PA', 'PB', 'PE', 'PI', 'PR', 'RJ', 'RN', 'RO', 'RR', 'RS', 'SC', 'SE', 'SP', 'TO'];
+
+            // Função para preencher dropdown de UFs
+            const fillUfDropdown = (selectElement) => {
+                ufs.forEach(uf => {
+                    const option = document.createElement('option');
+                    option.value = uf;
+                    option.textContent = uf;
+                    selectElement.appendChild(option);
+                });
+            };
+
+            fillUfDropdown(ufOrgaoExpedidorResponsavelSelect);
+            fillUfDropdown(ufEmpresaSelect);
+            fillUfDropdown(ufOrgaoExpedidorSupervisorSelect);
+
+            // --- Lógica de Máscaras ---
+
+            // Máscara para CPF (000.000.000-00)
+            const maskCpf = (e) => {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length > 11) value = value.slice(0, 11);
+                value = value.replace(/(\d{3})(\d)/, '$1.$2');
+                value = value.replace(/(\d{3})(\d)/, '$1.$2');
+                value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+                e.target.value = value;
+            };
+            cpfResponsavelInput.addEventListener('input', maskCpf);
+            cpfSupervisorInput.addEventListener('input', maskCpf);
+
+            // Máscara para CNPJ (00.000.000/0000-00)
+            cnpjEmpresaInput.addEventListener('input', (e) => {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length > 14) value = value.slice(0, 14);
+                value = value.replace(/^(\d{2})(\d)/, '$1.$2');
+                value = value.replace(/^(\d{2})\.(\d{3})(\d)/, '$1.$2.$3');
+                value = value.replace(/\.(\d{3})(\d)/, '.$1/$2');
+                value = value.replace(/(\d{4})(\d)/, '$1-$2');
+                e.target.value = value;
+            });
+
+            // Máscara para CEP (00000-000)
+            cepEmpresaInput.addEventListener('input', (e) => {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length > 8) value = value.slice(0, 8);
+                value = value.replace(/^(\d{5})(\d)/, '$1-$2');
+                e.target.value = value;
+            });
+
+            // Máscara para Data (dd/mm/aaaa)
+            const maskDate = (e) => {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length > 8) value = value.slice(0, 8);
+                if (value.length > 4) value = value.replace(/^(\d{2})(\d{2})(\d{1,4})/, '$1/$2/$3');
+                else if (value.length > 2) value = value.replace(/^(\d{2})(\d{1,2})/, '$1/$2');
+                e.target.value = value;
+            };
+            dataInicioEstagioInput.addEventListener('input', maskDate);
+            dataTerminoEstagioInput.addEventListener('input', maskDate);
+
+            // Máscara para Horário (HH:mm às HH:mm)
+            const maskTimeRange = (e) => {
+                let value = e.target.value.replace(/\D/g, '');
+                let maskedValue = '';
+
+                // Limita a 8 dígitos (HHMMHHMM)
+                if (value.length > 8) value = value.slice(0, 8);
+
+                if (value.length >= 2) maskedValue += value.substring(0, 2) + ':';
+                else maskedValue += value.substring(0, 2);
+
+                if (value.length >= 4) maskedValue += value.substring(2, 4);
+                
+                if (value.length > 4) { // Adiciona " às " apenas se houver mais dígitos para o segundo horário
+                    maskedValue += ' às ';
+                    if (value.length >= 6) maskedValue += value.substring(4, 6) + ':';
+                    else maskedValue += value.substring(4, 6);
+
+                    if (value.length >= 8) maskedValue += value.substring(6, 8);
+                    else maskedValue += value.substring(6, 8);
+                }
+                
+                e.target.value = maskedValue;
+            };
+            horarioMatutinoInput.addEventListener('input', maskTimeRange);
+            horarioVespertinoInput.addEventListener('input', maskTimeRange);
+            dailyTimeInputs.forEach(input => input.addEventListener('input', maskTimeRange)); // Aplica máscara aos novos campos da tabela
+
+            // --- Lógica de Preenchimento de Campos Ocultos da URL ---
+            const urlParams = new URLSearchParams(window.location.search);
+            const idRegistroFromUrl = urlParams.get('id'); // Pega o ID da URL (?id=...)
+            const statusFromUrl = urlParams.get('status'); // Pega o status da URL (?status=...)
+
+            if (idRegistroFromUrl) {
+                document.getElementById('id-registro').value = idRegistroFromUrl;
+            }
+            if (statusFromUrl) {
+                document.getElementById('status-preenchimento').value = statusFromUrl;
+            } else {
+                // Se o status não vier da URL, definimos como 'Empresa' para nova submissão da empresa
+                document.getElementById('status-preenchimento').value = 'Empresa';
+            }
+
+            // --- Lógica Condicional para Horários Repetidos ---
+            horariosRepetemRadios.forEach(radio => {
+                radio.addEventListener('change', (e) => {
+                    if (e.target.value === 'NÃO') {
+                        dailyScheduleTable.classList.remove('hidden');
+                        // Torna os campos de horário diários obrigatórios
+                        dailyTimeInputs.forEach(input => input.setAttribute('required', 'true'));
+                        // Remove a obrigatoriedade dos campos de horário gerais
+                        horarioMatutinoInput.removeAttribute('required');
+                        horarioVespertinoInput.removeAttribute('required');
+                        horarioMatutinoInput.value = ''; // Limpa os campos gerais
+                        horarioVespertinoInput.value = '';
+                    } else {
+                        dailyScheduleTable.classList.add('hidden');
+                        // Remove a obrigatoriedade dos campos de horário diários
+                        dailyTimeInputs.forEach(input => inputremoveAttribute('required'));
+                        // Torna os campos de horário gerais obrigatórios
+                        horarioMatutinoInput.setAttribute('required', 'true');
+                        horarioVespertinoInput.setAttribute('required', 'true');
+                        // Limpa os campos diários
+                        dailyTimeInputs.forEach(input => input.value = '');
+                    }
+                });
+            });
+
+            // Garante que o estado inicial do SIM/NÃO esteja correto no carregamento
+            const initialHorariosRepetem = document.querySelector('input[name="horarios-repetem"]:checked').value;
+            if (initialHorariosRepetem === 'NÃO') {
+                dailyScheduleTable.classList.remove('hidden');
+                dailyTimeInputs.forEach(input => input.setAttribute('required', 'true'));
+                horarioMatutinoInput.removeAttribute('required');
+                horarioVespertinoInput.removeAttribute('required');
+            } else {
+                horarioMatutinoInput.setAttribute('required', 'true');
+                horarioVespertinoInput.setAttribute('required', 'true');
+            }
+
+
+            // --- Manipulação do Envio do Formulário ---
+            const form = document.getElementById('company-form');
+            form.addEventListener('submit', (e) => {
+                e.preventDefault(); // Impede o envio padrão do formulário
+
+                // Coleta os dados do formulário
+                const formData = new FormData(form);
+                const data = {};
+                formData.forEach((value, key) => {
+                    data[key] = value;
+                });
+
+                // Aqui é onde você enviaria os dados para o Apps Script (backend)
+                // Por enquanto, apenas para demonstração:
+                console.log('Dados da empresa enviados:', data);
+                alert('Formulário da empresa enviado com sucesso! O próximo passo é o Apps Script para consolidar e gerar o termo.');
+                
+                // Exemplo de como você enviaria os dados para o Apps Script como um Web App:
+                // fetch('URL_DO_SEU_WEB_APP_APPS_SCRIPT', {
+                //     method: 'POST',
+                //     body: JSON.stringify(data),
+                //     headers: {
+                //         'Content-Type': 'application/json'
+                //     }
+                // })
+                // .then(response => response.json())
+                // .then(result => {
+                //     console.log('Sucesso:', result);
+                //     alert('Dados enviados com sucesso e termo gerado!');
+                //     // Redirecionar para uma página de confirmação, por exemplo
+                // })
+                // .catch(error => {
+                //     console.error('Erro:', error);
+                //     alert('Ocorreu um erro ao enviar os dados.');
+                // });
+            });
+        });
+    </script>
+</body>
+</html>
