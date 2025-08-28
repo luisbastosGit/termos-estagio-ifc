@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulário de Estágio - Aluno</title>
-    <!-- Inclui o Tailwind CSS para estilização -->
+    <title>Formulário do Aluno</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
@@ -12,340 +11,163 @@
         }
     </style>
 </head>
-<body class="bg-gray-100 p-6 sm:p-10 flex items-center justify-center min-h-screen">
+<body class="bg-gray-100 p-4 sm:p-8 flex items-center justify-center min-h-screen">
+    <div class="bg-white p-6 sm:p-10 rounded-2xl shadow-xl w-full max-w-lg">
+        <h1 class="text-3xl font-bold text-gray-800 mb-4 text-center">Termo de Compromisso de Estágio</h1>
+        <p class="text-gray-600 mb-6 text-center">Preencha as suas informações para iniciar o processo de estágio.</p>
 
-    <div class="bg-white p-6 sm:p-10 rounded-2xl shadow-xl w-full max-w-2xl">
-        <h1 class="text-3xl font-bold text-center text-gray-800 mb-2">Formulário de Estágio</h1>
-        <p class="text-center text-gray-600 mb-8">Preencha as suas informações para iniciar o processo.</p>
+        <form id="aluno-form" class="space-y-4">
+            <fieldset class="border border-gray-300 p-4 rounded-lg shadow-sm">
+                <legend class="text-lg font-semibold text-gray-700 px-2">Dados do Aluno</legend>
+                <div class="mt-4 space-y-4">
+                    <div>
+                        <label for="nome-completo" class="block text-sm font-medium text-gray-700">Nome Completo:</label>
+                        <input type="text" id="nome-completo" name="nome-completo" required
+                               class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    </div>
+                    <div>
+                        <label for="cpf" class="block text-sm font-medium text-gray-700">CPF:</label>
+                        <input type="text" id="cpf" name="cpf" required pattern="[0-9]{3}\.?[0-9]{3}\.?[0-9]{3}\-?[0-9]{2}" placeholder="XXX.XXX.XXX-XX"
+                               class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    </div>
+                    <div>
+                        <label for="matricula" class="block text-sm font-medium text-gray-700">Matrícula:</label>
+                        <input type="text" id="matricula" name="matricula" required
+                               class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    </div>
+                    <div>
+                        <label for="data-nascimento" class="block text-sm font-medium text-gray-700">Data de Nascimento:</label>
+                        <input type="date" id="data-nascimento" name="data-nascimento" required
+                               class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    </div>
+                    <div>
+                        <label for="telefone-aluno" class="block text-sm font-medium text-gray-700">Telefone do Aluno:</label>
+                        <input type="tel" id="telefone-aluno" name="telefone-aluno" required pattern="\([0-9]{2}\) ?[0-9]{4,5}\-?[0-9]{4}" placeholder="(XX) XXXXX-XXXX"
+                               class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    </div>
+                    <div>
+                        <label for="email-aluno" class="block text-sm font-medium text-gray-700">E-mail do Aluno:</label>
+                        <input type="email" id="email-aluno" name="email-aluno" required
+                               class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    </div>
+                    <div>
+                        <label for="curso" class="block text-sm font-medium text-gray-700">Curso:</label>
+                        <input type="text" id="curso" name="curso" required
+                               class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    </div>
+                    <div>
+                        <label for="turma-fase" class="block text-sm font-medium text-gray-700">Turma/Fase:</label>
+                        <input type="text" id="turma-fase" name="turma-fase" required
+                               class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    </div>
+                    <div>
+                        <label for="nome-orientador" class="block text-sm font-medium text-gray-700">Nome do Orientador do IFC:</label>
+                        <input type="text" id="nome-orientador" name="nome-orientador" required
+                               class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    </div>
+                </div>
+            </fieldset>
 
-        <form id="student-form" class="space-y-6">
+            <fieldset class="border border-gray-300 p-4 rounded-lg shadow-sm">
+                <legend class="text-lg font-semibold text-gray-700 px-2">Dados da Empresa Concedente (para contato)</legend>
+                <div class="mt-4 space-y-4">
+                    <div>
+                        <label for="nome-concedente" class="block text-sm font-medium text-gray-700">Nome da Concedente:</label>
+                        <input type="text" id="nome-concedente" name="nome-concedente" required
+                               class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    </div>
+                    <div>
+                        <label for="responsavel-concedente" class="block text-sm font-medium text-gray-700">Nome do Responsável na Concedente:</label>
+                        <input type="text" id="responsavel-concedente" name="responsavel-concedente" required
+                               class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    </div>
+                    <div>
+                        <label for="telefone-concedente" class="block text-sm font-medium text-gray-700">Telefone da Concedente:</label>
+                        <input type="tel" id="telefone-concedente" name="telefone-concedente" required pattern="\([0-9]{2}\) ?[0-9]{4,5}\-?[0-9]{4}" placeholder="(XX) XXXXX-XXXX"
+                               class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    </div>
+                    <div>
+                        <label for="email-concedente" class="block text-sm font-medium text-gray-700">E-mail da Concedente:</label>
+                        <input type="email" id="email-concedente" name="email-concedente" required
+                               class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    </div>
+                </div>
+            </fieldset>
 
-            <!-- Seção do Aluno -->
-            <div class="space-y-4">
-                <h2 class="text-xl font-semibold text-gray-800 border-b pb-2">Informações do Aluno</h2>
-                
-                <div>
-                    <label for="nome-completo" class="block text-sm font-medium text-gray-700">
-                        Nome Completo
-                        <span class="text-red-500">*</span>
-                    </label>
-                    <p class="text-xs text-gray-500 mt-1">
-                        <i class="fas fa-info-circle mr-1"></i>
-                        Informe o seu nome completo, SEM ABREVIAÇÕES, conforme consta na sua matrícula.
-                    </p>
-                    <input type="text" id="nome-completo" name="nome-completo" required
-                           class="mt-2 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
-                </div>
-
-                <div>
-                    <label for="cpf" class="block text-sm font-medium text-gray-700">
-                        CPF do Estudante
-                        <span class="text-red-500">*</span>
-                    </label>
-                    <input type="text" id="cpf" name="cpf" required placeholder="000.000.000-00"
-                           class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
-                </div>
-                
-                <div>
-                    <label for="matricula" class="block text-sm font-medium text-gray-700">
-                        Matrícula do Estudante
-                        <span class="text-red-500">*</span>
-                    </label>
-                    <input type="text" id="matricula" name="matricula" required
-                           class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
-                </div>
-                
-                <div>
-                    <label for="data-nascimento" class="block text-sm font-medium text-gray-700">
-                        Data de Nascimento
-                        <span class="text-red-500">*</span>
-                    </label>
-                    <input type="text" id="data-nascimento" name="data-nascimento" required placeholder="dd/mm/aaaa"
-                           class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
-                </div>
-
-                <div>
-                    <label for="telefone-aluno" class="block text-sm font-medium text-gray-700">
-                        Telefone do Aluno
-                        <span class="text-red-500">*</span>
-                    </label>
-                    <input type="tel" id="telefone-aluno" name="telefone-aluno" required placeholder="(99) 99999-9999"
-                           class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
-                </div>
-
-                <div>
-                    <label for="email-aluno" class="block text-sm font-medium text-gray-700">
-                        E-mail do Aluno
-                        <span class="text-red-500">*</span>
-                    </label>
-                    <input type="email" id="email-aluno" name="email-aluno" required
-                           class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
-                </div>
-
-                <div>
-                    <label for="curso" class="block text-sm font-medium text-gray-700">
-                        Informe o seu Curso
-                        <span class="text-red-500">*</span>
-                    </label>
-                    <select id="curso" name="curso" required
-                            class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
-                        <option value="" disabled selected>Selecione um curso</option>
-                        <option value="Técnico em Agropecuária">Técnico em Agropecuária</option>
-                        <option value="Técnico em Alimentos">Técnico em Alimentos</option>
-                    </select>
-                </div>
-                
-                <div>
-                    <label for="turma-fase" class="block text-sm font-medium text-gray-700">
-                        Turma/Fase
-                        <span class="text-red-500">*</span>
-                    </label>
-                    <select id="turma-fase" name="turma-fase" required disabled
-                            class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
-                        <option value="" disabled selected>Selecione uma turma</option>
-                    </select>
-                </div>
-
-                <!-- NOVO CAMPO: Nome do Orientador -->
-                <div>
-                    <label for="nome-orientador" class="block text-sm font-medium text-gray-700">
-                        Nome do Orientador
-                        <span class="text-red-500">*</span>
-                    </label>
-                    <input type="text" id="nome-orientador" name="nome-orientador" required
-                           class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
-                </div>
-
-                <!-- NOVOS CAMPOS PARA O PDF (Removidos para o aluno) -->
-                <!--
-                <div>
-                    <label for="valor-bolsa" class="block text-sm font-medium text-gray-700">
-                        Valor da Bolsa (R$)
-                        <span class="text-red-500">*</span>
-                    </label>
-                    <input type="text" id="valor-bolsa" name="valor-bolsa" required placeholder="Ex: 500,00"
-                           class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
-                </div>
-                <div>
-                    <label for="valor-transporte" class="block text-sm font-medium text-gray-700">
-                        Valor do Auxílio Transporte (R$)
-                        <span class="text-red-500">*</span>
-                    </label>
-                    <input type="text" id="valor-transporte" name="valor-transporte" required placeholder="Ex: 100,00"
-                           class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
-                </div>
-                <div>
-                    <label for="numero-convenio" class="block text-sm font-medium text-gray-700">
-                        Número do Convênio
-                        <span class="text-red-500">*</span>
-                    </label>
-                    <input type="text" id="numero-convenio" name="numero-convenio" required
-                           class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
-                </div>
-                <div>
-                    <label for="ano-convenio" class="block text-sm font-medium text-gray-700">
-                        Ano do Convênio
-                        <span class="text-red-500">*</span>
-                    </label>
-                    <input type="text" id="ano-convenio" name="ano-convenio" required placeholder="AAAA"
-                           class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
-                </div>
-                -->
-            </div>
-
-            <!-- Seção da Concedente -->
-            <div class="space-y-4 pt-6">
-                <h2 class="text-xl font-semibold text-gray-800 border-b pb-2">Informações da Concedente</h2>
-                
-                <div>
-                    <label for="nome-concedente" class="block text-sm font-medium text-gray-700">
-                        Nome do(a) Concedente
-                        <span class="text-red-500">*</span>
-                    </label>
-                    <input type="text" id="nome-concedente" name="nome-concedente" required
-                           class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
-                </div>
-
-                <div>
-                    <label for="responsavel-concedente" class="block text-sm font-medium text-gray-700">
-                        Nome do Responsável pela Concedente
-                        <span class="text-red-500">*</span>
-                    </label>
-                    <input type="text" id="responsavel-concedente" name="responsavel-concedente" required
-                           class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
-                </div>
-
-                <div>
-                    <label for="telefone-concedente" class="block text-sm font-medium text-gray-700">
-                        Telefone do(a) Concedente
-                        <span class="text-red-500">*</span>
-                    </label>
-                    <input type="tel" id="telefone-concedente" name="telefone-concedente" required placeholder="(99) 99999-9999"
-                           class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
-                </div>
-
-                <div>
-                    <label for="email-concedente" class="block text-sm font-medium text-gray-700">
-                        E-mail do(a) Concedente
-                        <span class="text-red-500">*</span>
-                    </label>
-                    <p class="text-xs text-gray-500 mt-1">
-                        <i class="fas fa-info-circle mr-1"></i>
-                        ATENÇÃO! Tenha MÁXIMA ATENÇÃO no preenchimento do E-MAIL, pois esse formulário será encaminhado para a empresa concluir o preenchimento. Tenha CERTEZA de que o E-mail está correto.
-                    </p>
-                    <input type="email" id="email-concedente" name="email-concedente" required
-                           class="mt-2 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
-                </div>
-            </div>
-
-            <button type="submit" id="submit-button"
-                    class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-                Enviar para a Empresa
+            <button type="submit"
+                    class="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-lg font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors duration-300">
+                Enviar Dados e Notificar Empresa
             </button>
-            <div id="loading-message" class="text-center text-gray-600 mt-4 hidden">
-                <div class="inline-block animate-spin rounded-full h-6 w-6 border-4 border-t-4 border-blue-500 border-opacity-75"></div>
-                <p class="mt-2">Enviando dados e gerando termo... Por favor, aguarde.</p>
-            </div>
         </form>
     </div>
-    
-    <!-- Script para máscaras e lógica condicional -->
+
     <script>
-        document.addEventListener('DOMContentLoaded', (event) => {
-            const cpfInput = document.getElementById('cpf');
-            const dataNascimentoInput = document.getElementById('data-nascimento');
-            const telefoneAlunoInput = document.getElementById('telefone-aluno');
-            const telefoneConcedenteInput = document.getElementById('telefone-concedente');
-            const cursoSelect = document.getElementById('curso');
-            const turmaFaseSelect = document.getElementById('turma-fase');
-            // Removidos: valorBolsaInput, valorTransporteInput, numeroConvenioInput, anoConvenioInput
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('aluno-form');
 
-            // Elementos para controle de envio
-            const submitButton = document.getElementById('submit-button');
-            const loadingMessage = document.getElementById('loading-message');
+            if (!form) {
+                console.error("Erro: O elemento de formulário com ID 'aluno-form' não foi encontrado no HTML. O script não pode ser inicializado.");
+                // alert("Erro interno: Formulário do aluno não encontrado. Por favor, recarregue a página ou contate o suporte."); // Não usar alert
+                return; 
+            }
 
-
-            // --- Lógica de Máscaras ---
-            // Máscara para CPF (000.000.000-00)
-            cpfInput.addEventListener('input', (e) => {
-                let value = e.target.value.replace(/\D/g, '');
-                if (value.length > 11) value = value.slice(0, 11);
-                value = value.replace(/(\d{3})(\d)/, '$1.$2');
-                value = value.replace(/(\d{3})(\d)/, '$1.$2');
-                value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
-                e.target.value = value;
-            });
-
-            // Máscara para Data (dd/mm/aaaa)
-            dataNascimentoInput.addEventListener('input', (e) => {
-                let value = e.target.value.replace(/\D/g, '');
-                if (value.length > 8) value = value.slice(0, 8);
-                if (value.length > 4) value = value.replace(/^(\d{2})(\d{2})(\d{1,4})/, '$1/$2/$3');
-                else if (value.length > 2) value = value.replace(/^(\d{2})(\d{1,2})/, '$1/$2');
-                e.target.value = value;
-            });
-
-            // Máscara para Telefone (pode ser 8 ou 9 dígitos no meio)
-            const maskTelefone = (e) => {
-                let value = e.target.value.replace(/\D/g, '');
-                if (value.length > 11) value = value.slice(0, 11);
-                if (value.length === 11) {
-                    value = value.replace(/^(\d{2})(\d{5})(\d{4})$/, '($1) $2-$3');
-                } else if (value.length === 10) {
-                    value = value.replace(/^(\d{2})(\d{4})(\d{4})$/, '($1) $2-$3');
-                } else if (value.length > 6) {
-                    value = value.replace(/^(\d{2})(\d{4,5})(\d{1,4})$/, '($1) $2-$3');
-                } else if (value.length > 2) {
-                    value = value.replace(/^(\d{2})(\d{1,5})/, '($1) $2');
-                } else if (value.length > 0) {
-                    value = value.replace(/^(\d{1,2})/, '($1)');
-                }
-                e.target.value = value;
-            };
-
-            telefoneAlunoInput.addEventListener('input', maskTelefone);
-            telefoneConcedenteInput.addEventListener('input', maskTelefone);
-
-            // Removidos: Máscara para Valor e Máscara para Ano
-
-            // --- Lógica Condicional de Turma/Fase ---
-            cursoSelect.addEventListener('change', (e) => {
-                const cursoSelecionado = e.target.value;
-                turmaFaseSelect.innerHTML = '<option value="" disabled selected>Selecione uma turma</option>';
-                turmaFaseSelect.disabled = false;
-
-                if (cursoSelecionado === 'Técnico em Agropecuária') {
-                    ['TURMA 3A', 'TURMA 3B', 'TURMA 3C', 'TURMA 3D'].forEach(turma => {
-                        const option = document.createElement('option');
-                        option.value = turma;
-                        option.textContent = turma;
-                        turmaFaseSelect.appendChild(option);
-                    });
-                } else if (cursoSelecionado === 'Técnico em Alimentos') {
-                    const option = document.createElement('option');
-                    option.value = '3E';
-                    option.textContent = '3E';
-                    turmaFaseSelect.appendChild(option);
-                }
-            });
-
-            // --- Manipulação do Envio do Formulário ---
-            const form = document.getElementById('student-form');
-            form.addEventListener('submit', (e) => {
-                e.preventDefault(); // Impede o envio padrão do formulário
-
-                // Desabilita o botão e mostra mensagem de loading
-                submitButton.disabled = true;
-                submitButton.classList.add('opacity-50', 'cursor-not-allowed');
-                loadingMessage.classList.remove('hidden');
-
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
 
                 // Coleta os dados do formulário
                 const formData = new FormData(form);
                 const data = {};
-                formData.forEach((value, key) => {
+                for (let [key, value] of formData.entries()) {
                     data[key] = value;
-                });
-
-                // Converte o objeto de dados para o formato URL-encoded
-                const urlEncodedData = new URLSearchParams();
-                for (const key in data) {
-                    urlEncodedData.append(key, data[key]);
                 }
 
-                // Envia os dados para o Apps Script Web App
-                fetch('https://script.google.com/macros/s/AKfycbwFYPjVAP94uRmpG9lQgpqMV6RUNum7Mi2q1vkGwVB4aDwEswrstWtTNZtJuXXHzmjiRw/exec', { // <-- COLOQUE A URL DO SEU WEB APP AQUI!
-                    method: 'POST',
-                    body: urlEncodedData.toString(), // Envia como string URL-encoded
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded' // <-- NOVO CABEÇALHO
-                    }
-                })
-                .then(response => response.json())
-                .then(result => {
+                // O formulário do aluno NÃO DEVE enviar idRegistro nem statusPreenchimento
+                // Esses são gerados ou atualizados no backend.
+                // Apenas para garantir que não haja campos extras inesperados:
+                delete data['idRegistro'];
+                delete data['statusPreenchimento'];
+
+                // Converte o objeto de dados para o formato x-www-form-urlencoded
+                const formBody = Object.keys(data).map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key])).join('&');
+
+                // URL DO SEU WEB APP DO GOOGLE APPS SCRIPT
+                // SUBSTITUA ESTA URL PELA SUA URL REAL DE IMPLANTAÇÃO DO APPS SCRIPT
+                const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwFYPjVAP94uRmpG9lQgpqMV6RUNum7Mi2q1vkGwVB4aDwEswrstWtTNZtJuXXHzmjiRw/exec'; // <-- IMPORTANTE: COLOQUE SUA URL AQUI!
+
+                if (WEB_APP_URL === 'https://script.google.com/macros/s/AKfycbwFYPjVAP94uRmpG9lQgpqMV6RUNum7Mi2q1vkGwVB4aDwEswrstWtTNZtJuXXHzmjiRw/exec' || !WEB_APP_URL) {
+                    console.error("Erro: A URL do Web App não foi configurada. Por favor, substitua 'SUA_URL_DO_WEB_APP_AQUI' pela URL real.");
+                    // alert("Erro de configuração: URL do Apps Script Web App não definida."); // Não usar alert
+                    return;
+                }
+
+                try {
+                    const response = await fetch(WEB_APP_URL, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        },
+                        body: formBody
+                    });
+
+                    const result = await response.json();
+
                     if (result.success) {
                         alert('Formulário enviado com sucesso! Um e-mail foi enviado para a empresa.');
-                        window.location.reload(); // Recarrega o formulário para um novo preenchimento
+                        window.location.reload(); // Recarrega o formulário para uma nova submissão
                     } else {
                         alert('Erro ao enviar o formulário: ' + result.error);
-                        console.error('Erro do Apps Script:', result.error);
+                        console.error('Erro detalhado do Apps Script:', result.error);
                     }
-                })
-                .catch(error => {
+                } catch (error) {
                     console.error('Erro na requisição fetch:', error);
-                    alert('Ocorreu um erro de conexão. Verifique sua internet e tente novamente.');
-                })
-                .finally(() => {
-                    // Reabilita o botão e oculta a mensagem de loading em caso de erro
-                    submitButton.disabled = false;
-                    submitButton.classList.remove('opacity-50', 'cursor-not-allowed');
-                    loadingMessage.classList.add('hidden');
-                });
+                    alert('Ocorreu um erro de conexão ou de processamento. Tente novamente ou contate o suporte.');
+                }
             });
         });
     </script>
 </body>
 </html>
+
 
 
 
