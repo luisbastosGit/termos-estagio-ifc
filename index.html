@@ -107,14 +107,12 @@
 
             if (!form) {
                 console.error("Erro: O elemento de formulário com ID 'aluno-form' não foi encontrado no HTML. O script não pode ser inicializado.");
-                // alert("Erro interno: Formulário do aluno não encontrado. Por favor, recarregue a página ou contate o suporte."); // Não usar alert
                 return; 
             }
 
             form.addEventListener('submit', async (e) => {
                 e.preventDefault();
 
-                // Coleta os dados do formulário
                 const formData = new FormData(form);
                 const data = {};
                 for (let [key, value] of formData.entries()) {
@@ -122,23 +120,23 @@
                 }
 
                 // O formulário do aluno NÃO DEVE enviar idRegistro nem statusPreenchimento
-                // Esses são gerados ou atualizados no backend.
-                // Apenas para garantir que não haja campos extras inesperados:
                 delete data['idRegistro'];
                 delete data['statusPreenchimento'];
 
-                // Converte o objeto de dados para o formato x-www-form-urlencoded
                 const formBody = Object.keys(data).map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key])).join('&');
 
                 // URL DO SEU WEB APP DO GOOGLE APPS SCRIPT
-                // SUBSTITUA ESTA URL PELA SUA URL REAL DE IMPLANTAÇÃO DO APPS SCRIPT
-                const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwFYPjVAP94uRmpG9lQgpqMV6RUNum7Mi2q1vkGwVB4aDwEswrstWtTNZtJuXXHzmjiRw/exec'; // <-- IMPORTANTE: COLOQUE SUA URL AQUI!
+                const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwFYPjVAP94uRmpG9lQgpqMV6RUNum7Mi2q1vkGwVB4aDwEswrstWtTNZtJuXXHzMjiRw/exec'; // SUA URL REAL AQUI!
 
-                if (WEB_APP_URL === 'https://script.google.com/macros/s/AKfycbwFYPjVAP94uRmpG9lQgpqMV6RUNum7Mi2q1vkGwVB4aDwEswrstWtTNZtJuXXHzmjiRw/exec' || !WEB_APP_URL) {
-                    console.error("Erro: A URL do Web App não foi configurada. Por favor, substitua 'SUA_URL_DO_WEB_APP_AQUI' pela URL real.");
-                    // alert("Erro de configuração: URL do Apps Script Web App não definida."); // Não usar alert
-                    return;
-                }
+                // Removido o if redundante, pois a URL já está definida acima
+                // if (WEB_APP_URL === 'SUA_URL_DO_WEB_APP_AQUI' || !WEB_APP_URL) {
+                //     console.error("Erro: A URL do Web App não foi configurada. Por favor, substitua 'SUA_URL_DO_WEB_APP_AQUI' pela URL real.");
+                //     return;
+                // }
+
+                console.log("Dados sendo enviados (index.html):", data); // Novo log
+                console.log("Corpo da requisição (formBody - index.html):", formBody); // Novo log
+                console.log("URL do Apps Script (index.html):", WEB_APP_URL); // Novo log
 
                 try {
                     const response = await fetch(WEB_APP_URL, {
@@ -149,17 +147,19 @@
                         body: formBody
                     });
 
+                    console.log("Resposta bruta do Apps Script (index.html):", response); // Novo log
                     const result = await response.json();
+                    console.log("Resultado JSON do Apps Script (index.html):", result); // Novo log
 
                     if (result.success) {
                         alert('Formulário enviado com sucesso! Um e-mail foi enviado para a empresa.');
-                        window.location.reload(); // Recarrega o formulário para uma nova submissão
+                        window.location.reload(); 
                     } else {
                         alert('Erro ao enviar o formulário: ' + result.error);
-                        console.error('Erro detalhado do Apps Script:', result.error);
+                        console.error('Erro detalhado do Apps Script (index.html):', result.error);
                     }
                 } catch (error) {
-                    console.error('Erro na requisição fetch:', error);
+                    console.error('Erro na requisição fetch (index.html):', error);
                     alert('Ocorreu um erro de conexão ou de processamento. Tente novamente ou contate o suporte.');
                 }
             });
