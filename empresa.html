@@ -287,24 +287,13 @@
             const alunoNome = urlParams.get('alunoNome');
             const alunoCurso = urlParams.get('alunoCurso');
 
-            // Preenche o campo oculto idRegistroOculto
             const idRegistroInput = document.getElementById('idRegistroOculto');
             if (idRegistroInput) {
                 idRegistroInput.value = idRegistro;
             } else {
                 console.error("Elemento com ID 'idRegistroOculto' não encontrado no HTML.");
-                // alert("Erro de configuração: Campo ID do registro não encontrado."); // Não usar alert
             }
             
-            // Exibe informações do aluno para contexto (opcional)
-            // if (alunoNome) {
-            //     const alunoInfoDiv = document.getElementById('aluno-info');
-            //     if (alunoInfoDiv) {
-            //         alunoInfoDiv.innerHTML = `<p class="text-gray-700">Aluno(a): <strong>${alunoNome}</strong> (Curso: ${alunoCurso})</p>`;
-            //     }
-            // }
-
-            // Lógica para alternar horários gerais/diários
             const radiosHorariosRepetem = document.querySelectorAll('input[name="horarios-repetem"]');
             const horariosGeraisDiv = document.getElementById('horarios-gerais');
             const horariosDiariosDiv = document.getElementById('horarios-diarios');
@@ -322,42 +311,33 @@
             radiosHorariosRepetem.forEach(radio => {
                 radio.addEventListener('change', toggleHorarios);
             });
-            toggleHorarios(); // Define o estado inicial
+            toggleHorarios(); 
 
             const form = document.getElementById('empresa-form');
 
             if (!form) {
                 console.error("Erro: O elemento de formulário com ID 'empresa-form' não foi encontrado no HTML. O script não pode ser inicializado.");
-                // alert("Erro interno: Formulário da empresa não encontrado. Por favor, recarregue a página ou contate o suporte."); // Não usar alert
                 return; 
             }
 
             form.addEventListener('submit', async (e) => {
                 e.preventDefault();
 
-                // Coleta os dados do formulário
                 const formData = new FormData(form);
                 const data = {};
                 for (let [key, value] of formData.entries()) {
                     data[key] = value;
                 }
 
-                // Garante que idRegistro e statusPreenchimento sejam enviados corretamente
-                // O idRegistro já é pego da URL e preenchido no campo oculto, então está em formData
-                data['statusPreenchimento'] = 'Empresa'; // Define o status para a submissão da empresa
+                data['statusPreenchimento'] = 'Empresa'; 
 
-                // Converte o objeto de dados para o formato x-www-form-urlencoded
                 const formBody = Object.keys(data).map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key])).join('&');
 
-                // URL DO SEU WEB APP DO GOOGLE APPS SCRIPT
-                // SUBSTITUA ESTA URL PELA SUA URL REAL DE IMPLANTAÇÃO DO APPS SCRIPT
-                const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwFYPjVAP94uRmpG9lQgpqMV6RUNum7Mi2q1vkGwVB4aDwEswrstWtTNZtJuXXHzmjiRw/exec'; // <-- IMPORTANTE: COLOQUE SUA URL AQUI!
+                const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwFYPjVAP94uRmpG9lQgpqMV6RUNum7Mi2q1vkGwVB4aDwEswrstWtTNZtJuXXHzmjiRw/exec'; // SUA URL REAL AQUI!
 
-                if (WEB_APP_URL === 'https://script.google.com/macros/s/AKfycbwFYPjVAP94uRmpG9lQgpqMV6RUNum7Mi2q1vkGwVB4aDwEswrstWtTNZtJuXXHzmjiRw/exec' || !WEB_APP_URL) {
-                    console.error("Erro: A URL do Web App não foi configurada. Por favor, substitua 'SUA_URL_DO_WEB_APP_AQUI' pela URL real.");
-                    // alert("Erro de configuração: URL do Apps Script Web App não definida."); // Não usar alert
-                    return;
-                }
+                console.log("Dados sendo enviados (empresa.html):", data); 
+                console.log("Corpo da requisição (formBody - empresa.html):", formBody); 
+                console.log("URL do Apps Script (empresa.html):", WEB_APP_URL); 
 
                 try {
                     const response = await fetch(WEB_APP_URL, {
@@ -368,18 +348,28 @@
                         body: formBody
                     });
 
-                    const result = await response.json();
+                    console.log("Resposta bruta do Apps Script (empresa.html):", response); 
+                    
+                    const contentType = response.headers.get("content-type");
+                    if (contentType && contentType.indexOf("application/json") !== -1) {
+                        const result = await response.json();
+                        console.log("Resultado JSON do Apps Script (empresa.html):", result); 
 
-                    if (result.success) {
-                        alert('Termo gerado com sucesso! Verifique a pasta no Google Drive e seu e-mail.');
-                        // Opcional: Redirecionar para uma página de confirmação
-                        // window.location.href = 'pagina_de_confirmacao.html'; 
+                        if (result.success) {
+                            alert('Termo gerado com sucesso! Verifique a pasta no Google Drive e seu e-mail.');
+                            // window.location.href = 'pagina_de_confirmacao.html'; 
+                        } else {
+                            alert('Erro ao finalizar o termo: ' + result.error);
+                            console.error('Erro detalhado do Apps Script (empresa.html):', result.error);
+                        }
                     } else {
-                        alert('Erro ao finalizar o termo: ' + result.error);
-                        console.error('Erro detalhado do Apps Script:', result.error);
+                        const textResult = await response.text();
+                        console.error("Resposta não é JSON. Conteúdo (empresa.html):", textResult);
+                        alert('Erro: Resposta inesperada do servidor. Verifique os logs do Apps Script.');
                     }
+
                 } catch (error) {
-                    console.error('Erro na requisição fetch:', error);
+                    console.error('Erro na requisição fetch (empresa.html):', error);
                     alert('Ocorreu um erro de conexão ou de processamento. Tente novamente ou contate o suporte.');
                 }
             });
@@ -387,6 +377,8 @@
     </script>
 </body>
 </html>
+
+
 
 
 
