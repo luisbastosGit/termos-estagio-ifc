@@ -283,7 +283,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             const urlParams = new URLSearchParams(window.location.search);
             const idRegistro = urlParams.get('id');
-            const status = urlParams.get('status'); // Este é o status esperado, 'Empresa'
+            const status = urlParams.get('status'); 
             const alunoNome = urlParams.get('alunoNome');
             const alunoCurso = urlParams.get('alunoCurso');
 
@@ -333,7 +333,7 @@
 
                 const formBody = Object.keys(data).map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key])).join('&');
 
-                const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwFYPjVAP94uRmpG9lQgpqMV6RUNum7Mi2q1vkGwVB4aDwEswrstWtTNZtJuXXHzmjiRw/exec'; // SUA URL REAL AQUI!
+                const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwFYPjVAP94uRmpG9lQgpqMV6RUNum7Mi2q1vkGwVB4aDwEswrstWtTNZtJuXXHzMjiRw/exec'; 
 
                 console.log("Dados sendo enviados (empresa.html):", data); 
                 console.log("Corpo da requisição (formBody - empresa.html):", formBody); 
@@ -357,7 +357,6 @@
 
                         if (result.success) {
                             alert('Termo gerado com sucesso! Verifique a pasta no Google Drive e seu e-mail.');
-                            // window.location.href = 'pagina_de_confirmacao.html'; 
                         } else {
                             alert('Erro ao finalizar o termo: ' + result.error);
                             console.error('Erro detalhado do Apps Script (empresa.html):', result.error);
@@ -377,9 +376,6 @@
     </script>
 </body>
 </html>
-
-
-
 
 
 
