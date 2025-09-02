@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -61,9 +61,9 @@
                         </div>
                         <div>
                             <label for="curso" class="block text-sm font-medium text-gray-700">Curso:</label>
-                            <select id="curso" name="curso" required
-                                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2">
-                                <option value="" disabled selected>Selecione o curso</option>
+                             <select id="curso" name="curso" required
+                                   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2">
+                                <option value="" disabled selected>Selecione o Curso</option>
                                 <option value="Técnico em Agropecuária Integrado ao Ensino Médio">Técnico em Agropecuária Integrado ao Ensino Médio</option>
                                 <option value="Técnico em Alimentos Integrado ao Ensino Médio">Técnico em Alimentos Integrado ao Ensino Médio</option>
                             </select>
@@ -72,8 +72,8 @@
                     <div>
                         <label for="turma-fase" class="block text-sm font-medium text-gray-700">Turma / Fase:</label>
                         <select id="turma-fase" name="turma-fase" required
-                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2">
-                            <option value="" disabled selected>Selecione a turma/fase</option>
+                                   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2">
+                            <option value="" disabled selected>Selecione a Turma/Fase</option>
                         </select>
                     </div>
                     <div>
@@ -131,6 +131,13 @@
             // URL do seu Web App
             const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzk7Sw1FqO9w4yStBUHjiXDQs0NC30zhp4udY5W3Nn8iPz3JihoIf97U_mo2IshjU2BbA/exec'; // <-- SUBSTITUA PELA SUA URL REAL DE IMPLANTAÇÃO!
 
+            const cpfInput = document.getElementById('cpf');
+            const dataNascimentoInput = document.getElementById('data-nascimento');
+            const telefoneAlunoInput = document.getElementById('telefone-aluno');
+            const telefoneConcedenteInput = document.getElementById('telefone-concedente');
+            const cursoSelect = document.getElementById('curso');
+            const turmaFaseSelect = document.getElementById('turma-fase');
+            
             // Máscaras
             const maskCpf = (e) => {
                 let value = e.target.value.replace(/\D/g, '');
@@ -140,7 +147,7 @@
                 value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
                 e.target.value = value;
             };
-            document.getElementById('cpf').addEventListener('input', maskCpf);
+            cpfInput.addEventListener('input', maskCpf);
 
             const maskData = (e) => {
                 let value = e.target.value.replace(/\D/g, '');
@@ -149,7 +156,7 @@
                 else if (value.length > 2) value = value.replace(/^(\d{2})(\d{1,2})/, '$1/$2');
                 e.target.value = value;
             };
-            document.getElementById('data-nascimento').addEventListener('input', maskData);
+            dataNascimentoInput.addEventListener('input', maskData);
 
             const maskTelefone = (e) => {
                 let value = e.target.value.replace(/\D/g, '');
@@ -158,17 +165,16 @@
                 value = value.replace(/(\d)(\d{4})$/, '$1-$2');
                 e.target.value = value;
             };
-            document.getElementById('telefone-aluno').addEventListener('input', maskTelefone);
-            document.getElementById('telefone-concedente').addEventListener('input', maskTelefone);
-
-            // Lógica para Turma/Fase dinâmica
-            const cursoSelect = document.getElementById('curso');
-            const turmaFaseSelect = document.getElementById('turma-fase');
-
-            const updateTurmaFase = (curso) => {
-                turmaFaseSelect.innerHTML = '<option value="" disabled selected>Selecione a turma/fase</option>';
+            telefoneAlunoInput.addEventListener('input', maskTelefone);
+            telefoneConcedenteInput.addEventListener('input', maskTelefone);
+            
+            // Lógica para preencher as opções de Turma/Fase
+            const updateTurmaFase = () => {
+                const curso = cursoSelect.value;
+                turmaFaseSelect.innerHTML = '<option value="" disabled selected>Selecione a Turma/Fase</option>';
                 if (curso === 'Técnico em Agropecuária Integrado ao Ensino Médio') {
-                    ['3ª A', '3ª B', '3ª C', '3ª D'].forEach(turma => {
+                    const turmasAgro = ['3ª A', '3ª B', '3ª C', '3ª D'];
+                    turmasAgro.forEach(turma => {
                         const option = document.createElement('option');
                         option.value = turma;
                         option.textContent = turma;
@@ -181,15 +187,8 @@
                     turmaFaseSelect.appendChild(option);
                 }
             };
+            cursoSelect.addEventListener('change', updateTurmaFase);
             
-            cursoSelect.addEventListener('change', (e) => {
-                updateTurmaFase(e.target.value);
-            });
-
-            // Chama a função de atualização no carregamento inicial
-            updateTurmaFase(cursoSelect.value);
-
-
             const form = document.getElementById('aluno-form');
             const submitButton = form.querySelector('button[type="submit"]');
             const loadingMessage = document.getElementById('loading-message');
@@ -250,6 +249,7 @@
 
 </body>
 </html>
+
 
 
 
