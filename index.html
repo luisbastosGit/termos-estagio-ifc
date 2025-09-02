@@ -1,369 +1,383 @@
 <!DOCTYPE html>
-
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulário do Aluno</title>
-    <title>Formulário de Estágio - Aluno</title>
+    <title>Formulário da Empresa</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
             font-family: 'Inter', sans-serif;
         }
-        body { font-family: 'Inter', sans-serif; }
     </style>
 </head>
 <body class="bg-gray-100 p-4 sm:p-8 flex items-center justify-center min-h-screen">
     <div class="bg-white p-6 sm:p-10 rounded-2xl shadow-xl w-full max-w-lg">
-        <h1 class="text-3xl font-bold text-gray-800 mb-4 text-center">Termo de Compromisso de Estágio</h1>
-        <p class="text-gray-600 mb-6 text-center">Preencha as suas informações para iniciar o processo de estágio.</p>
+        <h1 class="text-3xl font-bold text-gray-800 mb-4 text-center">Dados da Empresa e Estágio</h1>
+        <p class="text-gray-600 mb-6 text-center">Por favor, preencha as informações da empresa e detalhes do estágio.</p>
 
-        <form id="aluno-form" class="space-y-4">
+        <form id="empresa-form" class="space-y-4">
+            <!-- Campo oculto para o idRegistro -->
+            <input type="hidden" id="idRegistroOculto" name="idRegistro">
+
             <fieldset class="border border-gray-300 p-4 rounded-lg shadow-sm">
-                <legend class="text-lg font-semibold text-gray-700 px-2">Dados do Aluno</legend>
+                <legend class="text-lg font-semibold text-gray-700 px-2">Informações da Concedente</legend>
                 <div class="mt-4 space-y-4">
-<body class="bg-gray-100 p-8">
-
-    <div class="max-w-4xl mx-auto bg-white p-6 md:p-10 rounded-2xl shadow-xl">
-
-        <div class="text-center mb-10">
-            <h1 class="text-4xl font-extrabold text-gray-800 mb-2">Formulário de Estágio</h1>
-            <p class="text-lg text-gray-600">Por favor, preencha as informações para a criação do Termo de Compromisso de Estágio.</p>
-        </div>
-
-        <form id="aluno-form" class="space-y-6">
-
-            <!-- Dados do Aluno -->
-            <div class="p-6 border-2 border-gray-200 rounded-xl bg-gray-50">
-                <h2 class="text-2xl font-bold text-gray-700 mb-4">Dados do Aluno</h2>
-                <div class="space-y-4">
                     <div>
-                        <label for="nome-completo" class="block text-sm font-medium text-gray-700">Nome Completo:</label>
-                        <input type="text" id="nome-completo" name="nome-completo" required
-                               class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2">
-                    </div>
-                    <div>
-                        <label for="cpf" class="block text-sm font-medium text-gray-700">CPF:</label>
-                        <input type="text" id="cpf" name="cpf" required pattern="[0-9]{3}\.?[0-9]{3}\.?[0-9]{3}\-?[0-9]{2}" placeholder="XXX.XXX.XXX-XX"
-                               class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                            <label for="cpf" class="block text-sm font-medium text-gray-700">CPF:</label>
-                            <input type="text" id="cpf" name="cpf" required pattern="\d{3}\.\d{3}\.\d{3}\-\d{2}" placeholder="000.000.000-00"
-                                   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2">
-                        </div>
-                        <div>
-                            <label for="matricula" class="block text-sm font-medium text-gray-700">Matrícula:</label>
-                            <input type="text" id="matricula" name="matricula" required
-                                   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2">
-                        </div>
-                    </div>
-                    <div>
-                        <label for="matricula" class="block text-sm font-medium text-gray-700">Matrícula:</label>
-                        <input type="text" id="matricula" name="matricula" required
-                               class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                            <label for="data-nascimento" class="block text-sm font-medium text-gray-700">Data de Nascimento:</label>
-                            <input type="text" id="data-nascimento" name="data-nascimento" required placeholder="dd/mm/aaaa"
-                                   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2">
-                        </div>
-                        <div>
-                            <label for="telefone-aluno" class="block text-sm font-medium text-gray-700">Telefone com DDD:</label>
-                            <input type="text" id="telefone-aluno" name="telefone-aluno" required placeholder="(00) 00000-0000"
-                                   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2">
-                        </div>
-                    </div>
-                    <div>
-                        <label for="data-nascimento" class="block text-sm font-medium text-gray-700">Data de Nascimento:</label>
-                        <input type="date" id="data-nascimento" name="data-nascimento" required
-                               class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                            <label for="email-aluno" class="block text-sm font-medium text-gray-700">E-mail do Aluno:</label>
-                            <input type="email" id="email-aluno" name="email-aluno" required
-                                   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2">
-                        </div>
-                        <div>
-                            <label for="curso" class="block text-sm font-medium text-gray-700">Curso:</label>
-                            <select id="curso" name="curso" required
-                                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2">
-                                <option value="" disabled selected>Selecione o curso</option>
-                                <option value="Técnico em Agropecuária Integrado ao Ensino Médio">Técnico em Agropecuária Integrado ao Ensino Médio</option>
-                                <option value="Técnico em Alimentos Integrado ao Ensino Médio">Técnico em Alimentos Integrado ao Ensino Médio</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div>
-                        <label for="telefone-aluno" class="block text-sm font-medium text-gray-700">Telefone do Aluno:</label>
-                        <input type="tel" id="telefone-aluno" name="telefone-aluno" required pattern="\([0-9]{2}\) ?[0-9]{4,5}\-?[0-9]{4}" placeholder="(XX) XXXXX-XXXX"
-                               class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                        <label for="turma-fase" class="block text-sm font-medium text-gray-700">Turma / Fase:</label>
-                        <select id="turma-fase" name="turma-fase" required
-                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2">
-                            <option value="" disabled selected>Selecione a turma/fase</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label for="email-aluno" class="block text-sm font-medium text-gray-700">E-mail do Aluno:</label>
-                        <input type="email" id="email-aluno" name="email-aluno" required
+                        <label for="nome-concedente-emp" class="block text-sm font-medium text-gray-700">Nome da Concedente (Razão Social):</label>
+                        <input type="text" id="nome-concedente-emp" name="nome-concedente-emp" required
                                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                     </div>
                     <div>
-                        <label for="curso" class="block text-sm font-medium text-gray-700">Curso:</label>
-                        <input type="text" id="curso" name="curso" required
+                        <label for="nome-fantasia" class="block text-sm font-medium text-gray-700">Nome Fantasia:</label>
+                        <input type="text" id="nome-fantasia" name="nome-fantasia"
                                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                     </div>
                     <div>
-                        <label for="turma-fase" class="block text-sm font-medium text-gray-700">Turma/Fase:</label>
-                        <input type="text" id="turma-fase" name="turma-fase" required
+                        <label for="cnpj-empresa" class="block text-sm font-medium text-gray-700">CNPJ:</label>
+                        <input type="text" id="cnpj-empresa" name="cnpj-empresa" required pattern="[0-9]{2}\.?[0-9]{3}\.?[0-9]{3}\/?[0-9]{4}\-?[0-9]{2}" placeholder="XX.XXX.XXX/XXXX-XX"
                                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                    </div>
-                    <div>
-                        <label for="nome-orientador" class="block text-sm font-medium text-gray-700">Nome do Orientador do IFC:</label>
-                        <label for="nome-orientador" class="block text-sm font-medium text-gray-700">Nome do Orientador no IFC:</label>
-                        <input type="text" id="nome-orientador" name="nome-orientador" required
-                               class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2">
                     </div>
                 </div>
             </fieldset>
 
             <fieldset class="border border-gray-300 p-4 rounded-lg shadow-sm">
-                <legend class="text-lg font-semibold text-gray-700 px-2">Dados da Empresa Concedente (para contato)</legend>
+                <legend class="text-lg font-semibold text-gray-700 px-2">Endereço da Empresa</legend>
                 <div class="mt-4 space-y-4">
-            </div>
-            
-            <!-- Dados da Concedente (Preenchidos pelo Aluno) -->
-            <div class="p-6 border-2 border-gray-200 rounded-xl bg-gray-50">
-                <h2 class="text-2xl font-bold text-gray-700 mb-4">Informações da Empresa Concedente</h2>
-                <div class="space-y-4">
                     <div>
-                        <label for="nome-concedente" class="block text-sm font-medium text-gray-700">Nome da Concedente:</label>
-                        <label for="nome-concedente" class="block text-sm font-medium text-gray-700">Nome da Empresa (Razão Social):</label>
-                        <input type="text" id="nome-concedente" name="nome-concedente" required
+                        <label for="cep-empresa" class="block text-sm font-medium text-gray-700">CEP:</label>
+                        <input type="text" id="cep-empresa" name="cep-empresa" required pattern="[0-9]{5}-?[0-9]{3}" placeholder="XXXXX-XXX"
                                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2">
                     </div>
                     <div>
-                        <label for="responsavel-concedente" class="block text-sm font-medium text-gray-700">Nome do Responsável na Concedente:</label>
-                        <label for="responsavel-concedente" class="block text-sm font-medium text-gray-700">Nome do Responsável Legal:</label>
-                        <input type="text" id="responsavel-concedente" name="responsavel-concedente" required
+                        <label for="rua-empresa" class="block text-sm font-medium text-gray-700">Rua:</label>
+                        <input type="text" id="rua-empresa" name="rua-empresa" required
                                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2">
                     </div>
                     <div>
-                        <label for="telefone-concedente" class="block text-sm font-medium text-gray-700">Telefone da Concedente:</label>
-                        <input type="tel" id="telefone-concedente" name="telefone-concedente" required pattern="\([0-9]{2}\) ?[0-9]{4,5}\-?[0-9]{4}" placeholder="(XX) XXXXX-XXXX"
+                        <label for="numero-empresa" class="block text-sm font-medium text-gray-700">Número:</label>
+                        <input type="text" id="numero-empresa" name="numero-empresa" required
                                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                        <label for="email-concedente" class="block text-sm font-medium text-gray-700">E-mail do Responsável (onde o link será enviado):</label>
-                        <input type="email" id="email-concedente" name="email-concedente" required
-                               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2">
                     </div>
                     <div>
-                        <label for="email-concedente" class="block text-sm font-medium text-gray-700">E-mail da Concedente:</label>
-                        <input type="email" id="email-concedente" name="email-concedente" required
+                        <label for="bairro-empresa" class="block text-sm font-medium text-gray-700">Bairro:</label>
+                        <input type="text" id="bairro-empresa" name="bairro-empresa" required
                                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                        <label for="telefone-concedente" class="block text-sm font-medium text-gray-700">Telefone do Responsável com DDD:</label>
-                        <input type="text" id="telefone-concedente" name="telefone-concedente" required placeholder="(00) 00000-0000"
-                               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2">
+                    </div>
+                    <div>
+                        <label for="cidade-empresa" class="block text-sm font-medium text-gray-700">Cidade:</label>
+                        <input type="text" id="cidade-empresa" name="cidade-empresa" required
+                               class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    </div>
+                    <div>
+                        <label for="uf-empresa" class="block text-sm font-medium text-gray-700">UF:</label>
+                        <input type="text" id="uf-empresa" name="uf-empresa" required maxlength="2" placeholder="Ex: SC"
+                               class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                     </div>
                 </div>
             </fieldset>
-            </div>
+
+            <fieldset class="border border-gray-300 p-4 rounded-lg shadow-sm">
+                <legend class="text-lg font-semibold text-gray-700 px-2">Dados do Responsável pela Empresa</legend>
+                <div class="mt-4 space-y-4">
+                    <div>
+                        <label for="responsavel-empresa" class="block text-sm font-medium text-gray-700">Nome do Responsável:</label>
+                        <input type="text" id="responsavel-empresa" name="responsavel-empresa" required
+                               class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    </div>
+                    <div>
+                        <label for="cargo-responsavel" class="block text-sm font-medium text-gray-700">Cargo do Responsável:</label>
+                        <input type="text" id="cargo-responsavel" name="cargo-responsavel" required
+                               class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    </div>
+                    <div>
+                        <label for="cpf-responsavel" class="block text-sm font-medium text-gray-700">CPF do Responsável:</label>
+                        <input type="text" id="cpf-responsavel" name="cpf-responsavel" required pattern="[0-9]{3}\.?[0-9]{3}\.?[0-9]{3}\-?[0-9]{2}" placeholder="XXX.XXX.XXX-XX"
+                               class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    </div>
+                    <div>
+                        <label for="rg-responsavel" class="block text-sm font-medium text-gray-700">RG do Responsável:</label>
+                        <input type="text" id="rg-responsavel" name="rg-responsavel" required
+                               class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label for="orgao-expedidor-responsavel" class="block text-sm font-medium text-gray-700">Órgão Expedidor:</label>
+                            <input type="text" id="orgao-expedidor-responsavel" name="orgao-expedidor-responsavel" required
+                                   class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                        </div>
+                        <div>
+                            <label for="uf-orgao-expedidor-responsavel" class="block text-sm font-medium text-gray-700">UF Órgão Exp.:</label>
+                            <input type="text" id="uf-orgao-expedidor-responsavel" name="uf-orgao-expedidor-responsavel" required maxlength="2" placeholder="Ex: SC"
+                                   class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset class="border border-gray-300 p-4 rounded-lg shadow-sm">
+                <legend class="text-lg font-semibold text-gray-700 px-2">Dados do Supervisor de Estágio (Empresa)</legend>
+                <div class="mt-4 space-y-4">
+                    <div>
+                        <label for="nome-supervisor" class="block text-sm font-medium text-gray-700">Nome do Supervisor:</label>
+                        <input type="text" id="nome-supervisor" name="nome-supervisor" required
+                               class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    </div>
+                    <div>
+                        <label for="cargo-supervisor" class="block text-sm font-medium text-gray-700">Cargo do Supervisor:</label>
+                        <input type="text" id="cargo-supervisor" name="cargo-supervisor" required
+                               class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    </div>
+                    <div>
+                        <label for="formacao-supervisor" class="block text-sm font-medium text-gray-700">Formação do Supervisor:</label>
+                        <input type="text" id="formacao-supervisor" name="formacao-supervisor" required
+                               class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    </div>
+                    <div>
+                        <label for="cpf-supervisor" class="block text-sm font-medium text-gray-700">CPF do Supervisor:</label>
+                        <input type="text" id="cpf-supervisor" name="cpf-supervisor" required pattern="[0-9]{3}\.?[0-9]{3}\.?[0-9]{3}\-?[0-9]{2}" placeholder="XXX.XXX.XXX-XX"
+                               class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    </div>
+                    <div>
+                        <label for="rg-supervisor" class="block text-sm font-medium text-gray-700">RG do Supervisor:</label>
+                        <input type="text" id="rg-supervisor" name="rg-supervisor" required
+                               class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label for="orgao-expedidor-supervisor" class="block text-sm font-medium text-gray-700">Órgão Expedidor:</label>
+                            <input type="text" id="orgao-expedidor-supervisor" name="orgao-expedidor-supervisor" required
+                                   class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                        </div>
+                        <div>
+                            <label for="uf-orgao-expedidor-supervisor" class="block text-sm font-medium text-gray-700">UF Órgão Exp.:</label>
+                            <input type="text" id="uf-orgao-expedidor-supervisor" name="uf-orgao-expedidor-supervisor" required maxlength="2" placeholder="Ex: SC"
+                                   class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                        </div>
+                    </div>
+                    <div>
+                        <label for="email-supervisor" class="block text-sm font-medium text-gray-700">E-mail do Supervisor:</label>
+                        <input type="email" id="email-supervisor" name="email-supervisor" required
+                               class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset class="border border-gray-300 p-4 rounded-lg shadow-sm">
+                <legend class="text-lg font-semibold text-gray-700 px-2">Período e Horário do Estágio</legend>
+                <div class="mt-4 space-y-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label for="data-inicio-estagio" class="block text-sm font-medium text-gray-700">Data de Início:</label>
+                            <input type="date" id="data-inicio-estagio" name="data-inicio-estagio" required
+                                   class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                        </div>
+                        <div>
+                            <label for="data-termino-estagio" class="block text-sm font-medium text-gray-700">Data de Término:</label>
+                            <input type="date" id="data-termino-estagio" name="data-termino-estagio" required
+                                   class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Os horários se repetem todos os dias?</label>
+                        <div class="mt-2 space-x-4">
+                            <label class="inline-flex items-center">
+                                <input type="radio" name="horarios-repetem" value="SIM" class="form-radio text-blue-600" checked>
+                                <span class="ml-2 text-gray-700">SIM</span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input type="radio" name="horarios-repetem" value="NÃO" class="form-radio text-blue-600">
+                                <span class="ml-2 text-gray-700">NÃO (Especificar por dia)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div id="horarios-gerais" class="space-y-4">
+                        <div>
+                            <label for="horario-matutino" class="block text-sm font-medium text-gray-700">Horário Matutino (Ex: 08:00-12:00):</label>
+                            <input type="text" id="horario-matutino" name="horario-matutino"
+                                   class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                        </div>
+                        <div>
+                            <label for="horario-vespertino" class="block text-sm font-medium text-gray-700">Horário Vespertino (Ex: 13:00-17:00):</label>
+                            <input type="text" id="horario-vespertino" name="horario-vespertino"
+                                   class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                        </div>
+                    </div>
+
+                    <div id="horarios-diarios" class="space-y-4 hidden">
+                        <!-- Horários para Segunda-feira -->
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 items-center">
+                            <span class="text-sm font-medium text-gray-700">Segunda-feira:</span>
+                            <input type="text" name="horario-matutino-seg" placeholder="Matutino"
+                                   class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                            <input type="text" name="horario-vespertino-seg" placeholder="Vespertino"
+                                   class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                        </div>
+                        <!-- Horários para Terça-feira -->
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 items-center">
+                            <span class="text-sm font-medium text-gray-700">Terça-feira:</span>
+                            <input type="text" name="horario-matutino-ter" placeholder="Matutino"
+                                   class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                            <input type="text" name="horario-vespertino-ter" placeholder="Vespertino"
+                                   class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                        </div>
+                        <!-- Horários para Quarta-feira -->
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 items-center">
+                            <span class="text-sm font-medium text-gray-700">Quarta-feira:</span>
+                            <input type="text" name="horario-matutino-qua" placeholder="Matutino"
+                                   class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                            <input type="text" name="horario-vespertino-qua" placeholder="Vespertino"
+                                   class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                        </div>
+                        <!-- Horários para Quinta-feira -->
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 items-center">
+                            <span class="text-sm font-medium text-gray-700">Quinta-feira:</span>
+                            <input type="text" name="horario-matutino-qui" placeholder="Matutino"
+                                   class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                            <input type="text" name="horario-vespertino-qui" placeholder="Vespertino"
+                                   class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                        </div>
+                        <!-- Horários para Sexta-feira -->
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 items-center">
+                            <span class="text-sm font-medium text-gray-700">Sexta-feira:</span>
+                            <input type="text" name="horario-matutino-sex" placeholder="Matutino"
+                                   class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                            <input type="text" name="horario-vespertino-sex" placeholder="Vespertino"
+                                   class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset class="border border-gray-300 p-4 rounded-lg shadow-sm">
+                <legend class="text-lg font-semibold text-gray-700 px-2">Detalhes do Estágio</legend>
+                <div class="mt-4 space-y-4">
+                    <div>
+                        <label for="area-estagio" class="block text-sm font-medium text-gray-700">Área de Estágio:</label>
+                        <input type="text" id="area-estagio" name="area-estagio" required
+                               class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    </div>
+                    <div>
+                        <label for="atividades-previstas" class="block text-sm font-medium text-gray-700">Atividades Previstas (descreva):</label>
+                        <textarea id="atividades-previstas" name="atividades-previstas" rows="4" required
+                                  class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"></textarea>
+                    </div>
+                    <div>
+                        <label for="convenio-ifc" class="block text-sm font-medium text-gray-700">Convênio IFC (se aplicável):</label>
+                        <input type="text" id="convenio-ifc" name="convenio-ifc"
+                               class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    </div>
+                </div>
+            </fieldset>
 
             <button type="submit"
-                    class="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-lg font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors duration-300">
-                Enviar Dados e Notificar Empresa
+                    class="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-lg font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-300">
+                Finalizar Termo de Compromisso
             </button>
-            <div class="flex justify-center mt-8">
-                <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg shadow-lg transition-colors duration-300">
-                    Enviar para a Empresa
-                </button>
-            </div>
-            
-            <div id="loading-message" class="text-center text-gray-600 mt-4 hidden">
-                <div class="inline-block animate-spin rounded-full h-6 w-6 border-4 border-t-4 border-blue-500 border-opacity-75"></div>
-                <p class="mt-2">Enviando dados... Por favor, aguarde.</p>
-            </div>
-            
         </form>
-
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const form = document.getElementById('aluno-form');
-        document.addEventListener('DOMContentLoaded', function () {
-            // URL do seu Web App
-            const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzk7Sw1FqO9w4yStBUHjiXDQs0NC30zhp4udY5W3Nn8iPz3JihoIf97U_mo2IshjU2BbA/exec'; // <-- SUBSTITUA PELA SUA URL REAL DE IMPLANTAÇÃO!
+            const urlParams = new URLSearchParams(window.location.search);
+            const idRegistro = urlParams.get('id');
+            const status = urlParams.get('status'); 
+            const alunoNome = urlParams.get('alunoNome');
+            const alunoCurso = urlParams.get('alunoCurso');
+
+            const idRegistroInput = document.getElementById('idRegistroOculto');
+            if (idRegistroInput) {
+                idRegistroInput.value = idRegistro;
+            } else {
+                console.error("Elemento com ID 'idRegistroOculto' não encontrado no HTML.");
+            }
+
+            const radiosHorariosRepetem = document.querySelectorAll('input[name="horarios-repetem"]');
+            const horariosGeraisDiv = document.getElementById('horarios-gerais');
+            const horariosDiariosDiv = document.getElementById('horarios-diarios');
+
+            function toggleHorarios() {
+                if (document.querySelector('input[name="horarios-repetem"]:checked').value === 'SIM') {
+                    horariosGeraisDiv.classList.remove('hidden');
+                    horariosDiariosDiv.classList.add('hidden');
+                } else {
+                    horariosGeraisDiv.classList.add('hidden');
+                    horariosDiariosDiv.classList.remove('hidden');
+                }
+            }
+
+            radiosHorariosRepetem.forEach(radio => {
+                radio.addEventListener('change', toggleHorarios);
+            });
+            toggleHorarios(); 
+
+            const form = document.getElementById('empresa-form');
 
             if (!form) {
-                console.error("Erro: O elemento de formulário com ID 'aluno-form' não foi encontrado no HTML. O script não pode ser inicializado.");
+                console.error("Erro: O elemento de formulário com ID 'empresa-form' não foi encontrado no HTML. O script não pode ser inicializado.");
                 return; 
             }
-            // Máscaras
-            const maskCpf = (e) => {
-                let value = e.target.value.replace(/\D/g, '');
-                if (value.length > 11) value = value.slice(0, 11);
-                value = value.replace(/(\d{3})(\d)/, '$1.$2');
-                value = value.replace(/(\d{3})(\d)/, '$1.$2');
-                value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
-                e.target.value = value;
-            };
-            document.getElementById('cpf').addEventListener('input', maskCpf);
-
-            const maskData = (e) => {
-                let value = e.target.value.replace(/\D/g, '');
-                if (value.length > 8) value = value.slice(0, 8);
-                if (value.length > 4) value = value.replace(/^(\d{2})(\d{2})(\d{1,4})/, '$1/$2/$3');
-                else if (value.length > 2) value = value.replace(/^(\d{2})(\d{1,2})/, '$1/$2');
-                e.target.value = value;
-            };
-            document.getElementById('data-nascimento').addEventListener('input', maskData);
 
             form.addEventListener('submit', async (e) => {
                 e.preventDefault();
-            const maskTelefone = (e) => {
-                let value = e.target.value.replace(/\D/g, '');
-                if (value.length > 11) value = value.slice(0, 11);
-                value = value.replace(/^(\d{2})(\d)/g, '($1) $2');
-                value = value.replace(/(\d)(\d{4})$/, '$1-$2');
-                e.target.value = value;
-            };
-            document.getElementById('telefone-aluno').addEventListener('input', maskTelefone);
-            document.getElementById('telefone-concedente').addEventListener('input', maskTelefone);
 
                 const formData = new FormData(form);
                 const data = {};
                 for (let [key, value] of formData.entries()) {
                     data[key] = value;
-            // Lógica para Turma/Fase dinâmica
-            const cursoSelect = document.getElementById('curso');
-            const turmaFaseSelect = document.getElementById('turma-fase');
-
-            const updateTurmaFase = (curso) => {
-                turmaFaseSelect.innerHTML = '<option value="" disabled selected>Selecione a turma/fase</option>';
-                if (curso === 'Técnico em Agropecuária Integrado ao Ensino Médio') {
-                    ['3ª A', '3ª B', '3ª C', '3ª D'].forEach(turma => {
-                        const option = document.createElement('option');
-                        option.value = turma;
-                        option.textContent = turma;
-                        turmaFaseSelect.appendChild(option);
-                    });
-                } else if (curso === 'Técnico em Alimentos Integrado ao Ensino Médio') {
-                    const option = document.createElement('option');
-                    option.value = '3ª E';
-                    option.textContent = '3ª E';
-                    turmaFaseSelect.appendChild(option);
                 }
-            };
-            
-            cursoSelect.addEventListener('change', (e) => {
-                updateTurmaFase(e.target.value);
-            });
 
-                delete data['idRegistro'];
-                delete data['statusPreenchimento'];
-            // Chama a função de atualização no carregamento inicial
-            updateTurmaFase(cursoSelect.value);
+                data['statusPreenchimento'] = 'Empresa'; 
 
                 const formBody = Object.keys(data).map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key])).join('&');
 
                 const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzk7Sw1FqO9w4yStBUHjiXDQs0NC30zhp4udY5W3Nn8iPz3JihoIf97U_mo2IshjU2BbA/exec'; 
-            const form = document.getElementById('aluno-form');
-            const submitButton = form.querySelector('button[type="submit"]');
-            const loadingMessage = document.getElementById('loading-message');
+                const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzk7Sw1FqO9w4yStBUHjiXDQs0NC30zhp4udY5W3Nn8iPz3JihoIf97U_mo2IshjU2BbA/exec'; 
 
-            if (form) {
-                form.addEventListener('submit', function (e) {
-                    e.preventDefault();
-
-                console.log("Dados sendo enviados (index.html):", data); 
-                console.log("Corpo da requisição (formBody - index.html):", formBody); 
-                console.log("URL do Apps Script (index.html):", WEB_APP_URL); 
-                    submitButton.disabled = true;
-                    submitButton.classList.add('opacity-50', 'cursor-not-allowed');
-                    loadingMessage.classList.remove('hidden');
+                console.log("Dados sendo enviados (empresa.html):", data); 
+                console.log("Corpo da requisição (formBody - empresa.html):", formBody); 
+                console.log("URL do Apps Script (empresa.html):", WEB_APP_URL); 
 
                 try {
                     const response = await fetch(WEB_APP_URL, {
-                    const form = e.target;
-                    const formData = new FormData(form);
-                    const data = {};
-                    for (const [key, value] of formData.entries()) {
-                        data[key] = value;
-                    }
-
-                    // Limpa dados de idRegistro e statusPreenchimento para evitar envio incorreto
-                    delete data['idRegistro'];
-                    delete data['statusPreenchimento'];
-
-                    const formBody = new URLSearchParams(data).toString();
-
-                    fetch(WEB_APP_URL, {
                         method: 'POST',
-                        body: formBody,
                         headers: {
                             'Content-Type': 'application/x-www-form-urlencoded'
                         },
                         body: formBody
                     });
 
-                    console.log("Resposta bruta do Apps Script (index.html):", response); 
-                    
-                    // Verifica se a resposta é JSON antes de tentar fazer o parse
+                    console.log("Resposta bruta do Apps Script (empresa.html):", response); 
+
                     const contentType = response.headers.get("content-type");
                     if (contentType && contentType.indexOf("application/json") !== -1) {
                         const result = await response.json();
-                        console.log("Resultado JSON do Apps Script (index.html):", result); 
+                        console.log("Resultado JSON do Apps Script (empresa.html):", result); 
 
-                        }
-                    })
-                    .then(response => response.json())
-                    .then(result => {
                         if (result.success) {
-                            alert('Formulário enviado com sucesso! Um e-mail foi enviado para a empresa.');
-                            window.location.reload(); 
-                            alert('Dados enviados com sucesso! O próximo passo é no e-mail da empresa.');
-                            window.location.reload();
+                            alert('Termo gerado com sucesso! Verifique a pasta no Google Drive e seu e-mail.');
                         } else {
-                            alert('Erro ao enviar o formulário: ' + result.error);
-                            console.error('Erro detalhado do Apps Script (index.html):', result.error);
-                            console.error('Erro do Apps Script:', result.error);
+                            alert('Erro ao finalizar o termo: ' + result.error);
+                            console.error('Erro detalhado do Apps Script (empresa.html):', result.error);
                         }
                     } else {
                         const textResult = await response.text();
-                        console.error("Resposta não é JSON. Conteúdo:", textResult);
+                        console.error("Resposta não é JSON. Conteúdo (empresa.html):", textResult);
                         alert('Erro: Resposta inesperada do servidor. Verifique os logs do Apps Script.');
                     }
 
                 } catch (error) {
-                    console.error('Erro na requisição fetch (index.html):', error);
+                    console.error('Erro na requisição fetch (empresa.html):', error);
                     alert('Ocorreu um erro de conexão ou de processamento. Tente novamente ou contate o suporte.');
                 }
             });
-                    })
-                    .catch(error => {
-                        console.error('Erro na requisição fetch:', error);
-                        alert('Ocorreu um erro de conexão. Tente novamente ou contate o suporte.');
-                    })
-                    .finally(() => {
-                        submitButton.disabled = false;
-                        submitButton.classList.remove('opacity-50', 'cursor-not-allowed');
-                        loadingMessage.classList.add('hidden');
-                    });
-                });
-            } else {
-                console.error('Erro: O formulário com o ID "aluno-form" não foi encontrado.');
-            }
         });
     </script>
-
 </body>
 </html>
+
 
 
 
