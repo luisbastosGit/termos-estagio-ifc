@@ -47,9 +47,9 @@
         <p class="text-center text-gray-600 mb-8">Por favor, preencha as informações da empresa e do estágio.</p>
 
         <form id="company-form" class="space-y-8">
-            <!-- Campos Ocultos para o ID do Registro e Status (Preenchidos pelo Apps Script) -->
-            <input type="hidden" id="id-registro" name="id-registro" value="">
-            <input type="hidden" id="status-preenchimento" name="status-preenchimento" value="">
+            <!-- Campos Ocultos para o ID do Registro e Status (CORRIGIDOS) -->
+            <input type="hidden" id="id-registro" name="idRegistro" value="">
+            <input type="hidden" id="status-preenchimento" name="statusPreenchimento" value="">
 
             <!-- Seção 1: Informações da Empresa -->
             <div class="space-y-4">
@@ -58,38 +58,38 @@
                 <div>
                     <label for="nome-concedente-emp" class="block text-sm font-medium text-gray-700">Nome da Concedente <span class="text-red-500">*</span></label>
                     <input type="text" id="nome-concedente-emp" name="nome-concedente-emp" required
-                               class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                                class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
                 </div>
                 <div>
                     <label for="nome-fantasia" class="block text-sm font-medium text-gray-700">Nome de Fantasia</label>
                     <input type="text" id="nome-fantasia" name="nome-fantasia"
-                               class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                                class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
                 </div>
                 <div>
                     <label for="responsavel-empresa" class="block text-sm font-medium text-gray-700">Responsável <span class="text-red-500">*</span></label>
                     <p class="text-xs text-gray-500 mt-1">O Responsável é a pessoa do RH ou aquela que possui poderes para responder pela empresa, que conste no Contrato Social ou possua procuração com esta finalidade.</p>
                     <input type="text" id="responsavel-empresa" name="responsavel-empresa" required
-                               class="mt-2 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                                class="mt-2 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
                 </div>
                 <div>
                     <label for="cargo-responsavel" class="block text-sm font-medium text-gray-700">Cargo do Responsável <span class="text-red-500">*</span></label>
                     <input type="text" id="cargo-responsavel" name="cargo-responsavel" required
-                               class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                                class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
                 </div>
                 <div>
                     <label for="cpf-responsavel" class="block text-sm font-medium text-gray-700">CPF do Responsável <span class="text-red-500">*</span></label>
                     <input type="text" id="cpf-responsavel" name="cpf-responsavel" required placeholder="000.000.000-00"
-                               class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                                class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
                 </div>
                 <div>
                     <label for="rg-responsavel" class="block text-sm font-medium text-gray-700">RG do Responsável <span class="text-red-500">*</span></label>
                     <input type="text" id="rg-responsavel" name="rg-responsavel" required
-                               class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                                class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
                 </div>
                 <div>
                     <label for="orgao-expedidor-responsavel" class="block text-sm font-medium text-gray-700">Órgão Expedidor <span class="text-red-500">*</span></label>
                     <input type="text" id="orgao-expedidor-responsavel" name="orgao-expedidor-responsavel" required
-                               class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                                class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
                 </div>
                 <div>
                     <label for="uf-orgao-expedidor-responsavel" class="block text-sm font-medium text-gray-700">UF do Órgão Expedidor <span class="text-red-500">*</span></label>
@@ -102,7 +102,7 @@
                 <div>
                     <label for="cnpj-empresa" class="block text-sm font-medium text-gray-700">CNPJ <span class="text-red-500">*</span></label>
                     <input type="text" id="cnpj-empresa" name="cnpj-empresa" required placeholder="00.000.000/0000-00"
-                               class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                                class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
                 </div>
 
                 <div class="pt-4">
@@ -111,32 +111,32 @@
                     <div>
                         <label for="cep-empresa" class="block text-sm font-medium text-gray-700">CEP da Empresa <span class="text-red-500">*</span></label>
                         <input type="text" id="cep-empresa" name="cep-empresa" required placeholder="00000-000"
-                                 class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                                     class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
                     </div>
                     <div>
                         <label for="rua-empresa" class="block text-sm font-medium text-gray-700">Rua <span class="text-red-500">*</span></label>
                         <input type="text" id="rua-empresa" name="rua-empresa" required
-                                 class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                                     class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
                     </div>
                     <div>
                         <label for="numero-empresa" class="block text-sm font-medium text-gray-700">Número <span class="text-red-500">*</span></label>
                         <input type="text" id="numero-empresa" name="numero-empresa" required
-                                 class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                                     class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
                     </div>
                     <div>
                         <label for="bairro-empresa" class="block text-sm font-medium text-gray-700">Bairro <span class="text-red-500">*</span></label>
                         <input type="text" id="bairro-empresa" name="bairro-empresa" required
-                                 class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                                     class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
                     </div>
                     <div>
                         <label for="cidade-empresa" class="block text-sm font-medium text-gray-700">Cidade <span class="text-red-500">*</span></label>
                         <input type="text" id="cidade-empresa" name="cidade-empresa" required
-                                 class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                                     class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
                     </div>
                     <div>
                         <label for="uf-empresa" class="block text-sm font-medium text-gray-700">UF da Empresa <span class="text-red-500">*</span></label>
                         <select id="uf-empresa" name="uf-empresa" required
-                                 class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                                     class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
                             <option value="" disabled selected>Selecione a UF</option>
                             <!-- UFs serão preenchidas via JS -->
                         </select>
@@ -148,12 +148,12 @@
                     <div class="mt-2 space-y-2">
                         <label class="inline-flex items-center">
                             <input type="radio" name="convenio-ifc" value="SIM" required
-                                 class="form-radio h-4 w-4 text-blue-600 focus:ring-blue-500">
+                                  class="form-radio h-4 w-4 text-blue-600 focus:ring-blue-500">
                             <span class="ml-2 text-gray-700">SIM</span>
                         </label>
                         <label class="inline-flex items-center ml-6">
                             <input type="radio" name="convenio-ifc" value="NÃO" required
-                                 class="form-radio h-4 w-4 text-blue-600 focus:ring-blue-500">
+                                  class="form-radio h-4 w-4 text-blue-600 focus:ring-blue-500">
                             <span class="ml-2 text-gray-700">NÃO</span>
                         </label>
                     </div>
@@ -168,32 +168,32 @@
                 <div>
                     <label for="nome-supervisor" class="block text-sm font-medium text-gray-700">Nome completo do Supervisor <span class="text-red-500">*</span></label>
                     <input type="text" id="nome-supervisor" name="nome-supervisor" required
-                               class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                                class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
                 </div>
                 <div>
                     <label for="cargo-supervisor" class="block text-sm font-medium text-gray-700">Cargo <span class="text-red-500">*</span></label>
                     <input type="text" id="cargo-supervisor" name="cargo-supervisor" required
-                               class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                                class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
                 </div>
                 <div>
                     <label for="formacao-supervisor" class="block text-sm font-medium text-gray-700">Formação Acadêmica <span class="text-red-500">*</span></label>
                     <input type="text" id="formacao-supervisor" name="formacao-supervisor" required
-                               class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                                class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
                 </div>
                 <div>
                     <label for="cpf-supervisor" class="block text-sm font-medium text-gray-700">CPF <span class="text-red-500">*</span></label>
                     <input type="text" id="cpf-supervisor" name="cpf-supervisor" required placeholder="000.000.000-00"
-                               class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                                class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
                 </div>
                 <div>
                     <label for="rg-supervisor" class="block text-sm font-medium text-gray-700">RG <span class="text-red-500">*</span></label>
                     <input type="text" id="rg-supervisor" name="rg-supervisor" required
-                               class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                                class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
                 </div>
                 <div>
                     <label for="orgao-expedidor-supervisor" class="block text-sm font-medium text-gray-700">Órgão Expedidor <span class="text-red-500">*</span></label>
                     <input type="text" id="orgao-expedidor-supervisor" name="orgao-expedidor-supervisor" required
-                               class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                                class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
                 </div>
                 <div>
                     <label for="uf-orgao-expedidor-supervisor" class="block text-sm font-medium text-gray-700">UF do Órgão Expedidor <span class="text-red-500">*</span></label>
@@ -206,7 +206,7 @@
                 <div>
                     <label for="email-supervisor" class="block text-sm font-medium text-gray-700">E-mail do Supervisor <span class="text-red-500">*</span></label>
                     <input type="email" id="email-supervisor" name="email-supervisor" required
-                               class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                                class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
                 </div>
             </div>
 
@@ -217,24 +217,24 @@
                 <div>
                     <label for="data-inicio-estagio" class="block text-sm font-medium text-gray-700">Data prevista para início do Estágio <span class="text-red-500">*</span></label>
                     <input type="text" id="data-inicio-estagio" name="data-inicio-estagio" required placeholder="dd/mm/aaaa"
-                               class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                                class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
                 </div>
                 <div>
                     <label for="data-termino-estagio" class="block text-sm font-medium text-gray-700">Data prevista para término do Estágio <span class="text-red-500">*</span></label>
                     <input type="text" id="data-termino-estagio" name="data-termino-estagio" required placeholder="dd/mm/aaaa"
-                               class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                                class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
                 </div>
                 
                 <div class="flex flex-col sm:flex-row sm:space-x-4">
                     <div class="flex-1">
                         <label for="horario-matutino" class="block text-sm font-medium text-gray-700">Horário matutino <span class="text-red-500">*</span></label>
                         <input type="text" id="horario-matutino" name="horario-matutino" required placeholder="HH:mm às HH:mm"
-                                 class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                                     class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
                     </div>
                     <div class="flex-1 mt-4 sm:mt-0">
                         <label for="horario-vespertino" class="block text-sm font-sm font-medium text-gray-700">Horário vespertino <span class="text-red-500">*</span></label>
                         <input type="text" id="horario-vespertino" name="horario-vespertino" required placeholder="HH:mm às HH:mm"
-                                 class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                                     class="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
                     </div>
                 </div>
 
@@ -244,12 +244,12 @@
                     <div class="mt-2 space-y-2">
                         <label class="inline-flex items-center">
                             <input type="radio" name="horarios-repetem" value="SIM" required checked
-                                 class="form-radio h-4 w-4 text-blue-600 focus:ring-blue-500">
+                                  class="form-radio h-4 w-4 text-blue-600 focus:ring-blue-500">
                             <span class="ml-2 text-gray-700">SIM</span>
                         </label>
                         <label class="inline-flex items-center ml-6">
                             <input type="radio" name="horarios-repetem" value="NÃO" required
-                                 class="form-radio h-4 w-4 text-blue-600 focus:ring-blue-500">
+                                  class="form-radio h-4 w-4 text-blue-600 focus:ring-blue-500">
                             <span class="ml-2 text-gray-700">NÃO</span>
                         </label>
                     </div>
@@ -305,18 +305,18 @@
                     <label for="area-estagio" class="block text-sm font-medium text-gray-700">Área do Estágio <span class="text-red-500">*</span></label>
                     <p class="text-xs text-gray-500 mt-1">Ex: Comercial, Administrativa, Alimentos, Suinocultura...</p>
                     <input type="text" id="area-estagio" name="area-estagio" required
-                               class="mt-2 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                                class="mt-2 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors">
                 </div>
                 <div>
                     <label for="atividades-previstas" class="block text-sm font-medium text-gray-700">Atividades Previstas <span class="text-red-500">*</span></label>
                     <p class="text-xs text-gray-500 mt-1">Aqui poderá ser informado quais as atividades o estagiário deverá desenvolver para o desenvolvimento de suas habilidades relacionadas com o seu curso.</p>
                     <textarea id="atividades-previstas" name="atividades-previstas" rows="5" required
-                                   class="mt-2 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors"></textarea>
+                                         class="mt-2 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors"></textarea>
                 </div>
             </div>
 
             <button type="submit" id="submit-button"
-                     class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
+                            class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
                 Finalizar e Enviar Termo
             </button>
             <div id="loading-message" class="text-center text-gray-600 mt-4 hidden">
@@ -404,7 +404,6 @@
             const maskTimeRange = (e) => {
                 let value = e.target.value.replace(/\D/g, '');
                 let maskedValue = '';
-                if (value.length > 8) value = value.slice(0, 8);
                 if (value.length >= 2) maskedValue += value.substring(0, 2) + ':';
                 else maskedValue += value.substring(0, 2);
                 if (value.length >= 4) maskedValue += value.substring(2, 4);
@@ -483,15 +482,27 @@
                     })
                     .then(result => {
                         if (result.success) {
-                            window.location.href = 'pagina_confirmacao.html'; // Redireciona para a página de sucesso
+                            // Substituí o alert() por uma mensagem na tela.
+                            const successMessage = document.createElement('div');
+                            successMessage.innerHTML = '<div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-4 rounded-lg" role="alert"><p class="font-bold">Sucesso!</p><p>Termo de Compromisso enviado com sucesso. Você será redirecionado em instantes.</p></div>';
+                            form.parentNode.insertBefore(successMessage, form.nextSibling);
+                            setTimeout(() => {
+                                window.location.href = 'pagina_confirmacao.html'; // Redireciona para a página de sucesso
+                            }, 3000); // 3 segundos
                         } else {
-                            alert('Erro ao finalizar o termo: ' + result.error);
+                            // Substituí o alert() por um modal ou mensagem na tela.
+                            const errorMessage = document.createElement('div');
+                            errorMessage.innerHTML = `<div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4 rounded-lg" role="alert"><p class="font-bold">Erro!</p><p>${result.error}</p></div>`;
+                            form.parentNode.insertBefore(errorMessage, form.nextSibling);
                             console.error('Erro do Apps Script:', result.error);
                         }
                     })
                     .catch(error => {
                         console.error('Erro na requisição fetch:', error);
-                        alert('Ocorreu um erro de conexão. Tente novamente ou contate o suporte.');
+                         // Substituí o alert() por uma mensagem na tela.
+                        const connectionError = document.createElement('div');
+                        connectionError.innerHTML = '<div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4 rounded-lg" role="alert"><p class="font-bold">Erro de Conexão!</p><p>Ocorreu um erro de conexão. Tente novamente ou contate o suporte.</p></div>';
+                        form.parentNode.insertBefore(connectionError, form.nextSibling);
                     })
                     .finally(() => {
                         submitButton.disabled = false;
