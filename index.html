@@ -2,132 +2,31 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulário de Estágio - Aluno</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        body { font-family: 'Inter', sans-serif; }
-    </style>
-</head>
-<body class="bg-gray-100 p-8">
-
-    <div class="max-w-4xl mx-auto bg-white p-6 md:p-10 rounded-2xl shadow-xl">
-
-        <div class="text-center mb-10">
-            <h1 class="text-4xl font-extrabold text-gray-800 mb-2">Formulário de Estágio</h1>
-            <p class="text-lg text-gray-600">Por favor, preencha as informações para a criação do Termo de Compromisso de Estágio.</p>
-        </div>
-
-        <form id="aluno-form" class="space-y-6">
-
-            <!-- Dados do Aluno -->
-            <div class="p-6 border-2 border-gray-200 rounded-xl bg-gray-50">
-                <h2 class="text-2xl font-bold text-gray-700 mb-4">Dados do Aluno</h2>
-                <div class="space-y-4">
-                    <div>
-                        <label for="nome-completo" class="block text-sm font-medium text-gray-700">Nome Completo:</label>
-                        <input type="text" id="nome-completo" name="nome-completo" required
-                               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2">
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                            <label for="cpf" class="block text-sm font-medium text-gray-700">CPF:</label>
-                            <input type="text" id="cpf" name="cpf" required pattern="\d{3}\.\d{3}\.\d{3}\-\d{2}" placeholder="000.000.000-00"
-                                   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2">
-                        </div>
-                        <div>
-                            <label for="matricula" class="block text-sm font-medium text-gray-700">Matrícula:</label>
-                            <input type="text" id="matricula" name="matricula" required
-                                   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2">
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                            <label for="data-nascimento" class="block text-sm font-medium text-gray-700">Data de Nascimento:</label>
-                            <input type="text" id="data-nascimento" name="data-nascimento" required placeholder="dd/mm/aaaa"
-                                   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2">
-                        </div>
-                        <div>
-                            <label for="telefone-aluno" class="block text-sm font-medium text-gray-700">Telefone com DDD:</label>
-                            <input type="text" id="telefone-aluno" name="telefone-aluno" required placeholder="(00) 00000-0000"
-                                   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2">
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                            <label for="email-aluno" class="block text-sm font-medium text-gray-700">E-mail do Aluno:</label>
-                            <input type="email" id="email-aluno" name="email-aluno" required
-                                   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2">
+@@ -61,9 +61,9 @@ <h2 class="text-2xl font-bold text-gray-700 mb-4">Dados do Aluno</h2>
                         </div>
                         <div>
                             <label for="curso" class="block text-sm font-medium text-gray-700">Curso:</label>
+                            <select id="curso" name="curso" required
+                                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2">
+                                <option value="" disabled selected>Selecione o curso</option>
                              <select id="curso" name="curso" required
                                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2">
                                 <option value="" disabled selected>Selecione o Curso</option>
                                 <option value="Técnico em Agropecuária Integrado ao Ensino Médio">Técnico em Agropecuária Integrado ao Ensino Médio</option>
                                 <option value="Técnico em Alimentos Integrado ao Ensino Médio">Técnico em Alimentos Integrado ao Ensino Médio</option>
                             </select>
-                        </div>
-                    </div>
+@@ -72,8 +72,8 @@ <h2 class="text-2xl font-bold text-gray-700 mb-4">Dados do Aluno</h2>
                     <div>
                         <label for="turma-fase" class="block text-sm font-medium text-gray-700">Turma / Fase:</label>
                         <select id="turma-fase" name="turma-fase" required
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2">
+                            <option value="" disabled selected>Selecione a turma/fase</option>
                                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2">
                             <option value="" disabled selected>Selecione a Turma/Fase</option>
                         </select>
                     </div>
                     <div>
-                        <label for="nome-orientador" class="block text-sm font-medium text-gray-700">Nome do Orientador no IFC:</label>
-                        <input type="text" id="nome-orientador" name="nome-orientador" required
-                               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2">
-                    </div>
-                </div>
-            </div>
-
-            <!-- Dados da Concedente (Preenchidos pelo Aluno) -->
-            <div class="p-6 border-2 border-gray-200 rounded-xl bg-gray-50">
-                <h2 class="text-2xl font-bold text-gray-700 mb-4">Informações da Empresa Concedente</h2>
-                <div class="space-y-4">
-                    <div>
-                        <label for="nome-concedente" class="block text-sm font-medium text-gray-700">Nome da Empresa (Razão Social):</label>
-                        <input type="text" id="nome-concedente" name="nome-concedente" required
-                               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2">
-                    </div>
-                    <div>
-                        <label for="responsavel-concedente" class="block text-sm font-medium text-gray-700">Nome do Responsável Legal:</label>
-                        <input type="text" id="responsavel-concedente" name="responsavel-concedente" required
-                               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2">
-                    </div>
-                    <div>
-                        <label for="email-concedente" class="block text-sm font-medium text-gray-700">E-mail do Responsável (onde o link será enviado):</label>
-                        <input type="email" id="email-concedente" name="email-concedente" required
-                               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2">
-                    </div>
-                    <div>
-                        <label for="telefone-concedente" class="block text-sm font-medium text-gray-700">Telefone do Responsável com DDD:</label>
-                        <input type="text" id="telefone-concedente" name="telefone-concedente" required placeholder="(00) 00000-0000"
-                               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2">
-                    </div>
-                </div>
-            </div>
-
-            <div class="flex justify-center mt-8">
-                <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg shadow-lg transition-colors duration-300">
-                    Enviar para a Empresa
-                </button>
-            </div>
-
-            <div id="loading-message" class="text-center text-gray-600 mt-4 hidden">
-                <div class="inline-block animate-spin rounded-full h-6 w-6 border-4 border-t-4 border-blue-500 border-opacity-75"></div>
-                <p class="mt-2">Enviando dados... Por favor, aguarde.</p>
-            </div>
-
-        </form>
-
-    </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
+@@ -131,6 +131,13 @@ <h2 class="text-2xl font-bold text-gray-700 mb-4">Informações da Empresa Conce
             // URL do seu Web App
             const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzk7Sw1FqO9w4yStBUHjiXDQs0NC30zhp4udY5W3Nn8iPz3JihoIf97U_mo2IshjU2BbA/exec'; // <-- SUBSTITUA PELA SUA URL REAL DE IMPLANTAÇÃO!
 
@@ -137,119 +36,72 @@
             const telefoneConcedenteInput = document.getElementById('telefone-concedente');
             const cursoSelect = document.getElementById('curso');
             const turmaFaseSelect = document.getElementById('turma-fase');
-
+            
             // Máscaras
             const maskCpf = (e) => {
                 let value = e.target.value.replace(/\D/g, '');
-                if (value.length > 11) value = value.slice(0, 11);
-                value = value.replace(/(\d{3})(\d)/, '$1.$2');
-                value = value.replace(/(\d{3})(\d)/, '$1.$2');
+@@ -140,7 +147,7 @@ <h2 class="text-2xl font-bold text-gray-700 mb-4">Informações da Empresa Conce
                 value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
                 e.target.value = value;
             };
+            document.getElementById('cpf').addEventListener('input', maskCpf);
             cpfInput.addEventListener('input', maskCpf);
 
             const maskData = (e) => {
                 let value = e.target.value.replace(/\D/g, '');
-                if (value.length > 8) value = value.slice(0, 8);
-                if (value.length > 4) value = value.replace(/^(\d{2})(\d{2})(\d{1,4})/, '$1/$2/$3');
+@@ -149,7 +156,7 @@ <h2 class="text-2xl font-bold text-gray-700 mb-4">Informações da Empresa Conce
                 else if (value.length > 2) value = value.replace(/^(\d{2})(\d{1,2})/, '$1/$2');
                 e.target.value = value;
             };
+            document.getElementById('data-nascimento').addEventListener('input', maskData);
             dataNascimentoInput.addEventListener('input', maskData);
 
             const maskTelefone = (e) => {
                 let value = e.target.value.replace(/\D/g, '');
-                if (value.length > 11) value = value.slice(0, 11);
-                value = value.replace(/^(\d{2})(\d)/g, '($1) $2');
+@@ -158,17 +165,16 @@ <h2 class="text-2xl font-bold text-gray-700 mb-4">Informações da Empresa Conce
                 value = value.replace(/(\d)(\d{4})$/, '$1-$2');
                 e.target.value = value;
             };
+            document.getElementById('telefone-aluno').addEventListener('input', maskTelefone);
+            document.getElementById('telefone-concedente').addEventListener('input', maskTelefone);
+
+            // Lógica para Turma/Fase dinâmica
+            const cursoSelect = document.getElementById('curso');
+            const turmaFaseSelect = document.getElementById('turma-fase');
+
+            const updateTurmaFase = (curso) => {
+                turmaFaseSelect.innerHTML = '<option value="" disabled selected>Selecione a turma/fase</option>';
             telefoneAlunoInput.addEventListener('input', maskTelefone);
             telefoneConcedenteInput.addEventListener('input', maskTelefone);
-
+            
             // Lógica para preencher as opções de Turma/Fase
             const updateTurmaFase = () => {
                 const curso = cursoSelect.value;
                 turmaFaseSelect.innerHTML = '<option value="" disabled selected>Selecione a Turma/Fase</option>';
                 if (curso === 'Técnico em Agropecuária Integrado ao Ensino Médio') {
+                    ['3ª A', '3ª B', '3ª C', '3ª D'].forEach(turma => {
                     const turmasAgro = ['3ª A', '3ª B', '3ª C', '3ª D'];
                     turmasAgro.forEach(turma => {
                         const option = document.createElement('option');
                         option.value = turma;
                         option.textContent = turma;
-                        turmaFaseSelect.appendChild(option);
-                    });
-                } else if (curso === 'Técnico em Alimentos Integrado ao Ensino Médio') {
-                    const option = document.createElement('option');
-                    option.value = '3ª E';
-                    option.textContent = '3ª E';
+@@ -181,15 +187,8 @@ <h2 class="text-2xl font-bold text-gray-700 mb-4">Informações da Empresa Conce
                     turmaFaseSelect.appendChild(option);
                 }
             };
             cursoSelect.addEventListener('change', updateTurmaFase);
 
+            cursoSelect.addEventListener('change', (e) => {
+                updateTurmaFase(e.target.value);
+            });
+
+            // Chama a função de atualização no carregamento inicial
+            updateTurmaFase(cursoSelect.value);
+
+
             const form = document.getElementById('aluno-form');
             const submitButton = form.querySelector('button[type="submit"]');
             const loadingMessage = document.getElementById('loading-message');
-
-            if (form) {
-                form.addEventListener('submit', function (e) {
-                    e.preventDefault();
-
-                    submitButton.disabled = true;
-                    submitButton.classList.add('opacity-50', 'cursor-not-allowed');
-                    loadingMessage.classList.remove('hidden');
-
-                    const form = e.target;
-                    const formData = new FormData(form);
-                    const data = {};
-                    for (const [key, value] of formData.entries()) {
-                        data[key] = value;
-                    }
-
-                    // Limpa dados de idRegistro e statusPreenchimento para evitar envio incorreto
-                    delete data['idRegistro'];
-                    delete data['statusPreenchimento'];
-
-                    const formBody = new URLSearchParams(data).toString();
-
-                    fetch(WEB_APP_URL, {
-                        method: 'POST',
-                        body: formBody,
-                        headers: {
-                            'Content-Type': 'application/x-www-form-urlencoded'
-                        }
-                    })
-                    .then(response => response.json())
-                    .then(result => {
-                        if (result.success) {
-                            alert('Dados enviados com sucesso! O próximo passo é no e-mail da empresa.');
-                            window.location.reload();
-                        } else {
-                            alert('Erro ao enviar o formulário: ' + result.error);
-                            console.error('Erro do Apps Script:', result.error);
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Erro na requisição fetch:', error);
-                        alert('Ocorreu um erro de conexão. Tente novamente ou contate o suporte.');
-                    })
-                    .finally(() => {
-                        submitButton.disabled = false;
-                        submitButton.classList.remove('opacity-50', 'cursor-not-allowed');
-                        loadingMessage.classList.add('hidden');
-                    });
-                });
-            } else {
-                console.error('Erro: O formulário com o ID "aluno-form" não foi encontrado.');
-            }
-        });
-    </script>
-
-</body>
-</html>
-
 
 
 
