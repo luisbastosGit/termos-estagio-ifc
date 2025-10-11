@@ -118,11 +118,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <script>
-        // URL da nossa nova API no Render para buscar os orientadores
+        // URL da nossa nova API no Render
         const API_URL = "https://api-estagios-backend.onrender.com";
-
-        // URL do backend ANTIGO do Apps Script, para onde os dados do formulário serão enviados
-        const SCRIPT_URL_ALUNO = 'https://script.google.com/macros/s/AKfycbx8g_xGfC0p9j5L4O7P0y9E1j5R6x7n_c4V3F2Z1g/exec';
 
         document.addEventListener('DOMContentLoaded', async () => {
             await loadOrientadores();
@@ -134,7 +131,8 @@
             try {
                 const response = await fetch(`${API_URL}/orientadores`);
                 if (!response.ok) {
-                    throw new Error(`Erro de rede: ${response.statusText}`);
+                    const errorData = await response.json().catch(() => null);
+                    throw new Error(`Erro de rede: ${response.statusText} - ${errorData ? errorData.message : ''}`);
                 }
                 const result = await response.json();
                 if (result.success) {
@@ -155,7 +153,7 @@
             }
         }
 
-        function enviarDadosAluno(e) {
+        async function enviarDadosAluno(e) {
             e.preventDefault();
             const form = e.target;
             const button = document.getElementById('submit-button');
@@ -166,24 +164,37 @@
             showAlert('A enviar os seus dados, por favor aguarde...', 'info');
 
             const formData = new FormData(form);
-            fetch(SCRIPT_URL_ALUNO, { method: 'POST', body: formData })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.result === 'success') {
-                        showAlert('Dados enviados com sucesso! Você receberá um e-mail com os próximos passos.', 'success');
-                        form.reset();
-                    } else {
-                        throw new Error(data.message || 'Ocorreu um erro desconhecido.');
-                    }
-                })
-                .catch(error => {
-                    console.error('Erro:', error);
-                    showAlert(`Erro ao enviar os dados: ${error.message}`, 'danger');
-                })
-                .finally(() => {
-                    button.disabled = false;
-                    spinner.style.display = 'none';
+            const data = Object.fromEntries(formData.entries());
+
+            // Cria um ID único para o registo aqui no frontend
+            data.idRegistro = self.crypto.randomUUID();
+            data.statusPreenchimento = 'ALUNO';
+
+            try {
+                const response = await fetch(`${API_URL}/add-student`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data),
                 });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    showAlert('Dados enviados com sucesso! A empresa e a coordenação foram notificadas.', 'success');
+                    form.reset();
+                    // Recarrega as opções do orientador após o reset
+                    document.getElementById('nome-orientador').innerHTML = '<option value="">A carregar orientadores...</option>';
+                    loadOrientadores();
+                } else {
+                    throw new Error(result.message || 'Ocorreu um erro desconhecido no servidor.');
+                }
+            } catch (error) {
+                console.error('Erro:', error);
+                showAlert(`Erro ao enviar os dados: ${error.message}`, 'danger');
+            } finally {
+                button.disabled = false;
+                spinner.style.display = 'none';
+            }
         }
 
         function showAlert(message, type) {
@@ -198,4 +209,3 @@
     </script>
 </body>
 </html>
-
