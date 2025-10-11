@@ -117,10 +117,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <script>
-        // URL da nossa nova API no Render (para buscar os orientadores)
+        // URL da nossa nova API no Render (para buscar orientadores E enviar dados)
         const API_URL = "https://api-estagios-backend.onrender.com";
-        // URL do backend antigo do Apps Script (para ENVIAR os dados)
-        const SCRIPT_URL_ALUNO = "https://script.google.com/macros/s/AKfycbx8gXf5L4D7Pb9E1i5M8x7nc4V9F2Z1g/exec";
 
         document.addEventListener('DOMContentLoaded', async () => {
             await loadOrientadores();
@@ -130,7 +128,6 @@
         async function loadOrientadores() {
             const select = document.getElementById('nome-orientador');
             try {
-                // Busca a lista na nossa nova API
                 const response = await fetch(`${API_URL}/orientadores`);
                 if (!response.ok) throw new Error(`Erro de rede: ${response.statusText}`);
                 
@@ -166,12 +163,12 @@
             const formData = new FormData(form);
             const data = Object.fromEntries(formData.entries());
             data.idRegistro = self.crypto.randomUUID();
-            data.timestamp = new Date().toLocaleString("pt-BR", {timeZone: "America/Sao_Paulo"});
             data.statusPreenchimento = 'ALUNO';
+            // O timestamp será gerado pelo backend
 
             try {
-                // Envia os dados para o backend antigo do Apps Script
-                const response = await fetch(SCRIPT_URL_ALUNO, {
+                // Envia os dados para a nossa NOVA API no Render
+                const response = await fetch(`${API_URL}/add-student`, {
                     method: 'POST',
                     body: JSON.stringify(data),
                     headers: { 'Content-Type': 'application/json' },
@@ -179,8 +176,8 @@
 
                 const result = await response.json();
 
-                if (result.status === 'success') {
-                    showAlert('Dados enviados com sucesso! A empresa e a coordenação foram notificadas.', 'success');
+                if (result.success) {
+                    showAlert('Dados enviados com sucesso! A empresa e a coordenação serão notificadas.', 'success');
                     form.reset();
                     document.getElementById('nome-orientador').innerHTML = '<option value="">A carregar orientadores...</option>';
                     loadOrientadores();
@@ -208,5 +205,4 @@
     </script>
 </body>
 </html>
-
 
