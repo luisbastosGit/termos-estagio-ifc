@@ -55,16 +55,6 @@
                         <option value="">Selecione o Curso</option>
                         <option value="Técnico em Agropecuária Integrado ao Ensino Médio">Técnico em Agropecuária Integrado ao Ensino Médio</option>
                         <option value="Técnico em Alimentos Integrado ao Ensino Médio">Técnico em Alimentos Integrado ao Ensino Médio</option>
-                        <option value="Técnico em Informática Integrado ao Ensino Médio">Técnico em Informática Integrado ao Ensino Médio</option>
-                        <option value="Técnico em Alimentos Subsequente">Técnico em Alimentos Subsequente</option>
-                        <option value="Agronomia">Agronomia</option>
-                        <option value="Ciência da Computação">Ciência da Computação</option>
-                        <option value="Engenharia de Alimentos">Engenharia de Alimentos</option>
-                        <option value="Licenciatura em Física">Licenciatura em Física</option>
-                        <option value="Licenciatura em Matemática">Licenciatura em Matemática</option>
-                        <option value="Medicina Veterinária">Medicina Veterinária</option>
-                        <option value="Pós-Graduação Lato Sensu em Educação e Diversidade">Pós-Graduação Lato Sensu em Educação e Diversidade</option>
-                        <option value="Pós-Graduação Stricto Sensu em Produção e Sanidade Animal">Pós-Graduação Stricto Sensu em Produção e Sanidade Animal</option>
                     </select>
                 </div>
                  <div class="form-group col-md-6">
@@ -74,8 +64,6 @@
                         <option value="1ª A">1ª A</option><option value="1ª B">1ª B</option><option value="1ª C">1ª C</option>
                         <option value="2ª A">2ª A</option><option value="2ª B">2ª B</option><option value="2ª C">2ª C</option>
                         <option value="3ª A">3ª A</option><option value="3ª B">3ª B</option><option value="3ª C">3ª C</option>
-                        <option value="4ª">4ª</option><option value="5ª">5ª</option><option value="6ª">6ª</option>
-                        <option value="7ª">7ª</option><option value="8ª">8ª</option><option value="9ª">9ª</option><option value="10ª">10ª</option>
                     </select>
                 </div>
             </div>
@@ -117,8 +105,11 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <script>
-        // URL da nossa nova API no Render (para buscar orientadores E enviar dados)
+        // URL da nossa nova API no Render (APENAS para buscar os orientadores)
         const API_URL = "https://api-estagios-backend.onrender.com";
+        
+        // URL do backend antigo do Apps Script (para ENVIAR os dados, como funcionava antes)
+        const SCRIPT_URL_ALUNO = "https://script.google.com/macros/s/AKfycbx8gXf5L4D7Pb9E1i5M8x7nc4V9F2Z1g/exec";
 
         document.addEventListener('DOMContentLoaded', async () => {
             await loadOrientadores();
@@ -128,6 +119,7 @@
         async function loadOrientadores() {
             const select = document.getElementById('nome-orientador');
             try {
+                // Busca a lista na nossa nova API
                 const response = await fetch(`${API_URL}/orientadores`);
                 if (!response.ok) throw new Error(`Erro de rede: ${response.statusText}`);
                 
@@ -163,12 +155,12 @@
             const formData = new FormData(form);
             const data = Object.fromEntries(formData.entries());
             data.idRegistro = self.crypto.randomUUID();
+            // A lógica de timestamp e status será tratada pelo Apps Script, como era antes
             data.statusPreenchimento = 'ALUNO';
-            // O timestamp será gerado pelo backend
 
             try {
-                // Envia os dados para a nossa NOVA API no Render
-                const response = await fetch(`${API_URL}/add-student`, {
+                // Envia os dados para o backend antigo e funcional do Apps Script
+                const response = await fetch(SCRIPT_URL_ALUNO, {
                     method: 'POST',
                     body: JSON.stringify(data),
                     headers: { 'Content-Type': 'application/json' },
@@ -176,9 +168,10 @@
 
                 const result = await response.json();
 
-                if (result.success) {
-                    showAlert('Dados enviados com sucesso! A empresa e a coordenação serão notificadas.', 'success');
+                if (result.status === 'success') {
+                    showAlert('Dados enviados com sucesso! A empresa e a coordenação foram notificadas.', 'success');
                     form.reset();
+                    // Recarrega as opções do orientador após o reset
                     document.getElementById('nome-orientador').innerHTML = '<option value="">A carregar orientadores...</option>';
                     loadOrientadores();
                 } else {
@@ -205,4 +198,5 @@
     </script>
 </body>
 </html>
+
 
