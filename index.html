@@ -6,20 +6,9 @@
     <title>Termo de Compromisso de Estágio - Dados do Aluno</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body {
-            background-color: #f4f4f4;
-            padding-top: 20px;
-        }
-        .container {
-            max-width: 800px;
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        .spinner-border {
-            display: none;
-        }
+        body { background-color: #f4f4f4; padding-top: 20px; }
+        .container { max-width: 800px; background-color: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        .spinner-border { display: none; }
     </style>
 </head>
 <body>
@@ -27,7 +16,8 @@
         <h2 class="text-center mb-4">Termo de Compromisso de Estágio - Dados do Aluno</h2>
         <div id="alert-container"></div>
         <form id="student-form">
-            <!-- Campos do formulário -->
+            
+            <h4 class="mt-4 mb-3">Dados do Aluno</h4>
             <div class="form-row">
                 <div class="form-group col-md-8">
                     <label for="nome-completo">Nome Completo do Aluno:</label>
@@ -81,22 +71,11 @@
                     <label for="turma-fase">Turma / Fase:</label>
                     <select class="form-control" id="turma-fase" name="turma-fase" required>
                         <option value="">Selecione a Turma/Fase</option>
-                        <option value="1ª A">1ª A</option>
-                        <option value="1ª B">1ª B</option>
-                        <option value="1ª C">1ª C</option>
-                        <option value="2ª A">2ª A</option>
-                        <option value="2ª B">2ª B</option>
-                        <option value="2ª C">2ª C</option>
-                        <option value="3ª A">3ª A</option>
-                        <option value="3ª B">3ª B</option>
-                        <option value="3ª C">3ª C</option>
-                        <option value="4ª">4ª</option>
-                        <option value="5ª">5ª</option>
-                        <option value="6ª">6ª</option>
-                        <option value="7ª">7ª</option>
-                        <option value="8ª">8ª</option>
-                        <option value="9ª">9ª</option>
-                        <option value="10ª">10ª</option>
+                        <option value="1ª A">1ª A</option><option value="1ª B">1ª B</option><option value="1ª C">1ª C</option>
+                        <option value="2ª A">2ª A</option><option value="2ª B">2ª B</option><option value="2ª C">2ª C</option>
+                        <option value="3ª A">3ª A</option><option value="3ª B">3ª B</option><option value="3ª C">3ª C</option>
+                        <option value="4ª">4ª</option><option value="5ª">5ª</option><option value="6ª">6ª</option>
+                        <option value="7ª">7ª</option><option value="8ª">8ª</option><option value="9ª">9ª</option><option value="10ª">10ª</option>
                     </select>
                 </div>
             </div>
@@ -106,10 +85,30 @@
                     <option value="">A carregar orientadores...</option>
                 </select>
             </div>
-            
-            <button type="submit" id="submit-button" class="btn btn-primary btn-block">
+
+            <h4 class="mt-5 mb-3">Dados da Empresa</h4>
+            <div class="form-group">
+                <label for="nome-concedente">Nome da Empresa / Concedente:</label>
+                <input type="text" class="form-control" id="nome-concedente" name="nome-concedente" required>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="responsavel-concedente">Nome do Responsável pela Empresa:</label>
+                    <input type="text" class="form-control" id="responsavel-concedente" name="responsavel-concedente" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="email-concedente">E-mail da Empresa:</label>
+                    <input type="email" class="form-control" id="email-concedente" name="email-concedente" required>
+                </div>
+            </div>
+             <div class="form-group">
+                <label for="telefone-concedente">Telefone/WhatsApp da Empresa:</label>
+                <input type="text" class="form-control" id="telefone-concedente" name="telefone-concedente" required>
+            </div>
+
+            <button type="submit" id="submit-button" class="btn btn-primary btn-block mt-4">
                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                Enviar Dados e Prosseguir
+                Enviar Dados e Notificar a Empresa
             </button>
         </form>
     </div>
@@ -118,8 +117,10 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <script>
-        // URL da nossa nova API no Render
+        // URL da nossa nova API no Render (para buscar os orientadores)
         const API_URL = "https://api-estagios-backend.onrender.com";
+        // URL do backend antigo do Apps Script (para ENVIAR os dados)
+        const SCRIPT_URL_ALUNO = "https://script.google.com/macros/s/AKfycbx8gXf5L4D7Pb9E1i5M8x7nc4V9F2Z1g/exec";
 
         document.addEventListener('DOMContentLoaded', async () => {
             await loadOrientadores();
@@ -129,11 +130,10 @@
         async function loadOrientadores() {
             const select = document.getElementById('nome-orientador');
             try {
+                // Busca a lista na nossa nova API
                 const response = await fetch(`${API_URL}/orientadores`);
-                if (!response.ok) {
-                    const errorData = await response.json().catch(() => null);
-                    throw new Error(`Erro de rede: ${response.statusText} - ${errorData ? errorData.message : ''}`);
-                }
+                if (!response.ok) throw new Error(`Erro de rede: ${response.statusText}`);
+                
                 const result = await response.json();
                 if (result.success) {
                     select.innerHTML = '<option value="">Selecione o Orientador</option>';
@@ -165,24 +165,23 @@
 
             const formData = new FormData(form);
             const data = Object.fromEntries(formData.entries());
-
-            // Cria um ID único para o registo aqui no frontend
             data.idRegistro = self.crypto.randomUUID();
+            data.timestamp = new Date().toLocaleString("pt-BR", {timeZone: "America/Sao_Paulo"});
             data.statusPreenchimento = 'ALUNO';
 
             try {
-                const response = await fetch(`${API_URL}/add-student`, {
+                // Envia os dados para o backend antigo do Apps Script
+                const response = await fetch(SCRIPT_URL_ALUNO, {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(data),
+                    headers: { 'Content-Type': 'application/json' },
                 });
 
                 const result = await response.json();
 
-                if (result.success) {
+                if (result.status === 'success') {
                     showAlert('Dados enviados com sucesso! A empresa e a coordenação foram notificadas.', 'success');
                     form.reset();
-                    // Recarrega as opções do orientador após o reset
                     document.getElementById('nome-orientador').innerHTML = '<option value="">A carregar orientadores...</option>';
                     loadOrientadores();
                 } else {
@@ -209,3 +208,5 @@
     </script>
 </body>
 </html>
+
+
